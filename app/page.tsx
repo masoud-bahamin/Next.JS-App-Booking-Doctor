@@ -13,7 +13,7 @@ export interface Doctor{
 }
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/doctors" , {
+  const res = await fetch("/api/doctors" , {
     next : {
       revalidate : 3
     }
