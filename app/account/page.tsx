@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
 
     const getUserInfo = async (id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/getUser/${id}`)
+            const res = await fetch(`https://bahamin-booking.vercel.app/api/users/getUser/${id}`)
             const data = await res.json()
             if (data.resulte) {
                 setUserInfo(data.user)

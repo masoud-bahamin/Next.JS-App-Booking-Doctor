@@ -9,7 +9,7 @@ export default function DoctorCard({ username, email, img }: Doctor) {
                 {img && <Image
                     width={200}
                     height={200}
-                    src={`/uploads/${img[img.length - 1].filename}`}
+                    src={`/uploads/${img[img.length - 1]?.filename}`}
                     alt="" className='w-64' />}
 
             </div>
