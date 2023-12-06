@@ -24,7 +24,7 @@ const getData = async () => {
 export default async function Home() {
   // connectToDb()
   // const doctors : Doctor[] = await doctorModel.find({})
-  const doctors :{users :Doctor[]}  = await getData()
+  // const doctors :{users :Doctor[]}  = await getData()
  
   
   return (
@@ -32,7 +32,7 @@ export default async function Home() {
       <Hero />
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
-      <BestDoctors doctors={doctors.users}/>
+      {/* <BestDoctors doctors={doctors.users}/> */}
     </div>
   )
 }
