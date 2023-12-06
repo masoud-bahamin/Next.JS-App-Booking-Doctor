@@ -12,19 +12,19 @@ export interface Doctor{
   img : {filename : string}[]
 }
 
-// const getData = async () => {
-//   const res = await fetch("https://booking.vercel.app/api/doctors" , {
-//     next : {
-//       revalidate : 3
-//     }
-//   })
-//   return res.json()
-// }
+const getData = async () => {
+  const res = await fetch("https://bahamin-booking.vercel.app/api/doctors" , {
+    next : {
+      revalidate : 3
+    }
+  })
+  return res.json()
+}
 
 export default async function Home() {
   // connectToDb()
   // const doctors : Doctor[] = await doctorModel.find({})
-  // const doctors :{users :Doctor[]}  = await getData()
+  const doctors :{users :Doctor[]}  = await getData()
  
   
   return (
@@ -32,7 +32,7 @@ export default async function Home() {
       <Hero />
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
-      {/* <BestDoctors doctors={doctors.users}/> */}
+      <BestDoctors doctors={doctors.users}/>
     </div>
   )
 }

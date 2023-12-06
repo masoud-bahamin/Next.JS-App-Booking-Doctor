@@ -23,12 +23,12 @@ const HomePage: React.FC = () => {
         const formData = new FormData();
         formData.append('image', image);
         // formData.append('doctorId', "656e3cc0d9cca355ae638960");
-        formData.append('userId', "656df63d51cb6e04af559728");
+        formData.append('userId', "656df68551cb6e04af559733");
 
         try {
             console.log("submit shod :))");
 
-            const response = await fetch('http://localhost:3000/api/doctors/update/656e3cc0d9cca355ae638960', {
+            const response = await fetch('https://bahamin-booking.vercel.app/api/doctors/update/656e3cc0d9cca355ae638960', {
                 method: 'POST',
                 body: formData,
             });
