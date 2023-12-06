@@ -18,7 +18,7 @@ export default function Hero() {
                 </div>
                 <div className='relative'>
                     <div>
-                        <Image width={400} height={400} src="/img/banner.png" alt="" className=' mx-auto' />
+                        <Image width={600} height={600} src="/img/banner.png" alt="" className=' mx-auto' />
                     </div>
                     <span className='absolute left-0 top-[40%] hero-text-animate3'>
                         <span className='bg-white rounded-lg p-2 flex items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
