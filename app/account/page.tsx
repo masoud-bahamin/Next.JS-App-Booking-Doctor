@@ -9,7 +9,7 @@ export interface User {
     username: string,
     email: string,
     password: string,
-    img?: { filename: string }[]
+    // img?: { filename: string }[]
 }
 
 
