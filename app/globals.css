@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .btn {
+        @apply bg-prim py-3 px-6 text-white h-fit rounded-lg hover:bg-transparent hover:text-prim border border-prim transition-all duration-150
+    }
+    .btn-b {
+        @apply py-3 px-6 text-prim h-fit rounded-lg hover:bg-transparent hover:text-white border hover:bg-prim  border-prim transition-all duration-150
+    }
+}
+
+.hero-text-animate3{
+    animation-name: textAnim;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.hero-text-animate{
+    animation-name: textAnim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes textAnim{
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.fill-image{
+    filter: invert(64%) sepia(19%) saturate(5083%) hue-rotate(166deg) brightness(99%) contrast(87%);
+}
