@@ -13,7 +13,7 @@ export interface Doctor{
 }
 
 const getData = async () => {
-  const res = await fetch("/api/doctors" , {
+  const res = await fetch("https://booking.vercel.app/api/doctors" , {
     next : {
       revalidate : 3
     }
