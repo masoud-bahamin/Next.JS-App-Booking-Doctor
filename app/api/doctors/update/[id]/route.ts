@@ -44,7 +44,6 @@ export const POST = async (req: any) => {
     const formData = await req.formData();
 
     const file = formData.get("image");
-    const doctorId = formData.get("doctorId");
     const userId = formData.get("userId");
 
     if (!file) {
@@ -63,14 +62,13 @@ export const POST = async (req: any) => {
         const image = await imageModel.create({
             filename,
             path: buffer,
-            doctorId,
             userId
         })
 
         console.log("mas image", image);
 
-        return NextResponse.json({ Message: "Success", status: 201 });
+        return NextResponse.json({ Message: "Success", status: 201, resulte: true });
     } catch (error) {
-        return NextResponse.json({ Message: "catch Failed", status: 500 , error});
+        return NextResponse.json({ Message: "catch Failed", status: 500, error, resulte: false });
     }
 };

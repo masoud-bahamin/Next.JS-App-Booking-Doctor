@@ -23,6 +23,7 @@ export default function Signup() {
       const data = await res.json()
       console.log(data);
       if (data.resulte) {
+        document.cookie = `bookingToken=${data.user._id}; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/` ;
         Swal.fire({
           icon: "success",
           text: "your signing was successfully"
@@ -65,7 +66,7 @@ export default function Signup() {
               {({ errors, touched }) => (
                 <Form className='xl:w-[500px]'>
                   {errors.email && touched.email ? <p className='py-2 text-rose-400 text-xs w-full'>{errors.email}</p> : null}
-                  <Field name="email" className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full" placeholder="email" />
+                  <Field name="email" className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full" placeholder={"email"} />
                   {errors.username && touched.username ? <p className='py-2 text-rose-400 text-xs w-full'>{errors.username}</p> : null}
                   <Field name="username" className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full" placeholder="username" />
                   {errors.password && touched.password ? <p className='py-2 text-rose-400 text-xs w-full'>{errors.password}</p> : null}

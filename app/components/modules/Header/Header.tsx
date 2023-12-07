@@ -1,13 +1,15 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Image from 'next/image'
+import Link from 'next/link'
+import CheckUser from './CheckUser'
 
 export default function Header() {
     return (
         <div>
             <header className='flex items-center gap-12 container mx-auto py-6'>
                 <div>
-                    <Image width={200} height={200} src="/img/logo3.png" alt="" className='w-40'/>
+                    <Image width={200} height={200} src="/img/logo3.png" alt="" className='w-40' />
                 </div>
                 <div>
                     <Navbar />
@@ -22,7 +24,7 @@ export default function Header() {
                             <p className='font-semibold'>090 535 484 3540</p>
                         </div>
                     </div>
-                    <button className='btn-b text-sm'>LOGIN / SIGNUP</button>
+                    <CheckUser />
                 </div>
             </header>
         </div>
