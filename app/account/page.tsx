@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import baseUrl from '@/utils/baseUrl';
 
 export interface User {
     username: string,
@@ -52,7 +53,7 @@ const HomePage: React.FC = () => {
         try {
             console.log("submit shod :))");
 
-            const response = await fetch('http://localhost:3000/api/doctors/update/656e3cc0d9cca355ae638960', {
+            const response = await fetch(`${baseUrl}images/upload`, {
                 method: 'POST',
                 body: formData,
             });
@@ -80,9 +81,54 @@ const HomePage: React.FC = () => {
         setLoading(false)
     };
 
+    // const handleUpload = async () => {
+    //     if (!image) {
+    //         console.error('No image selected');
+    //         return;
+    //     }
+    //     if (!token) {
+    //         console.error('No token selected');
+    //         return;
+    //     }
+    //     setLoading(true)
+    //     const formData = new FormData();
+    //     formData.append('image', image);
+    //     formData.append('userId', token);
+
+    //     try {
+    //         console.log("submit shod :))");
+
+    //         const response = await fetch(`${baseUrl}doctors/update/656e3cc0d9cca355ae638960`, {
+    //             method: 'POST',
+    //             body: formData,
+    //         });
+    //         console.log("wow response", response);
+
+    //         const data = await response.json();
+    //         console.log('Image uploaded successfully:', data);
+    //         if (data.resulte) {
+    //             Swal.fire({
+    //                 icon: "success",
+    //                 text: "Image uploaded successfully"
+    //             })
+    //             setImage(null)
+    //             getUserInfo(token)
+    //         } else {
+    //             Swal.fire({
+    //                 icon: "error",
+    //                 text: "Image uploade error"
+    //             })
+    //         }
+
+    //     } catch (error) {
+    //         console.error('Error uploading image', error);
+    //     }
+    //     setLoading(false)
+    // };
+
     const getUserInfo = async (id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/getUser/${id}`)
+            const res = await fetch(`${baseUrl}users/getUser/${id}`)
             const data = await res.json()
 
             if (data.resulte) {

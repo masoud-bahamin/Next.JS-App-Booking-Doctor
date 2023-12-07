@@ -3,6 +3,7 @@ import BestDoctors from "./components/templates/Home/BestDoctors";
 import Hero from "./components/templates/Home/Hero";
 import Specialities from "./components/templates/Home/Specialities";
 import connectToDb from "@/utils/db";
+import baseUrl from "@/utils/baseUrl";
 
 export interface Doctor {
   username: string;
@@ -14,7 +15,7 @@ export interface Doctor {
 
 const getData = async () => {
   try {
-    const res = await fetch("https://bahamin-booking.vercel.app/api/doctors", {
+    const res = await fetch(`${baseUrl}doctors`, {
       next: {
         revalidate: 3
       }

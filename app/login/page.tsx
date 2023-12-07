@@ -1,5 +1,6 @@
 "use client"
 
+import baseUrl from '@/utils/baseUrl'
 import loginValidations from '@/validations/clientValidations/login'
 import { Field, Form, Formik } from 'formik'
 import Image from 'next/image'
@@ -16,7 +17,7 @@ export default function Signup() {
     const signupUser = async ({ email, password }: { email: string,  password: string }) => {
         setLoading(true)
         try {
-            const res = await fetch("http://localhost:3000/api/users/login", {
+            const res = await fetch(`${baseUrl}users/login`, {
                 method: "POST",
                 body: JSON.stringify({ email, password })
             })

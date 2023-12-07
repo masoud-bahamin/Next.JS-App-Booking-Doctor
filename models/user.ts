@@ -18,6 +18,11 @@ const schema = mongoose.Schema({
         unique : true,
         index : true
     },
+    role : {
+        type : String ,
+        enum : ["USER" , "DOCTOR" , "ADMIN"],
+        default : "USER"
+    }
 
 
 }, {
