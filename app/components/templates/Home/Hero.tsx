@@ -8,7 +8,7 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
         <div className='bg-slate-100'>
             <div className='container mx-auto flex py-8'>
                 <div className='lg:w-1/2 flex flex-col justify-center gap-8'>
-                    <h2 className='text-4xl font-bold'>Hello Masoud
+                    <h2 className='text-4xl font-bold'>
                         Consult <span className='text-prim'>Best Doctors</span> Your <br />
                         Nearby Location.</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>

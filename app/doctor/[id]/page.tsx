@@ -1,38 +1,35 @@
-import { User } from '@/app/account/page'
 import Breadcrumb from '@/app/components/modules/Breadcrumb/Breadcrumb'
 import Rating from '@/app/components/modules/Comment/Rating'
 import TabSection from '@/app/components/templates/Doctor/TabSection'
-import BaseUrl from '@/utils/baseUrl'
 import Image from 'next/image'
 import React from 'react'
 
-// const getDoctorData = async (id: string) => {
-//     const res = await fetch(`${BaseUrl}users/getUser/${id}`,{
-//         next : {
-//             revalidate : 3
-//         }
-//     })
+const getDoctorData = async (id: string) => {
+    const res = await fetch(`https://bahamin-booking.vercel.app/api/users/getUser/${id}`,{
+        next : {
+            revalidate : 3
+        }
+    })
 
-//     return res.json()
-// }
+    return res.json()
+}
 
 export default async function page({ params }: { params: { id: string } }) {
-    console.log(params);
 
-    // const {user} = await getDoctorData(params.id)
-    const user : User & {comments : [{message : string , username : string}]} = {
-        username: "masoudddd1122",
-        email: "masemail22",
-        password: "12345622",
-        img: [{ filename: "1701971662908u1.jpg" }],
-        comments : [{message : "string" , username : "string"}],
-        role : "USER" , 
-        location : "string" ,
-        age : 18 ,
-        bio : "{string}" ,
-        name : "string",
-        phone : "string"
-    }
+    const {user} = await getDoctorData(params.id)
+    // const user : User & {comments : [{message : string , username : string}]} = {
+    //     username: "masoudddd1122",
+    //     email: "masemail22",
+    //     password: "12345622",
+    //     img: [{ filename: "1701971662908u1.jpg" }],
+    //     comments : [{message : "string" , username : "string"}],
+    //     role : "USER" , 
+    //     location : "string" ,
+    //     age : 18 ,
+    //     bio : "{string}" ,
+    //     name : "string",
+    //     phone : "string"
+    // }
     console.log(user);
 
 
