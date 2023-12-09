@@ -17,21 +17,6 @@ const getDoctorData = async (id: string) => {
 export default async function page({ params }: { params: { id: string } }) {
 
     const {user} = await getDoctorData(params.id)
-    // const user : User & {comments : [{message : string , username : string}]} = {
-    //     username: "masoudddd1122",
-    //     email: "masemail22",
-    //     password: "12345622",
-    //     img: [{ filename: "1701971662908u1.jpg" }],
-    //     comments : [{message : "string" , username : "string"}],
-    //     role : "USER" , 
-    //     location : "string" ,
-    //     age : 18 ,
-    //     bio : "{string}" ,
-    //     name : "string",
-    //     phone : "string"
-    // }
-    console.log(user);
-
 
     return (
         <div className=''>
