@@ -5,13 +5,13 @@ import React from 'react'
 
 export default function DoctorCard({ username, email, img , _id}: Doctor) {
     return (
-        <div>
+        <div className='w-64 mx-auto'>
             <div>
                 {img && <Image
                     width={200}
                     height={200}
                     src={`/uploads/${img[img.length - 1]?.filename}`}
-                    alt="" className='w-64' />}
+                    alt="" className='w-64 h-64' />}
 
             </div>
             <div className='p-3 bg-white rounded-b-md'>

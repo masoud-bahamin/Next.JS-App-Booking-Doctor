@@ -7,8 +7,8 @@ export default function Footer() {
     return (
         <footer className='bg-third text-white mt-12'>
             <GoToTop />
-            <div className='container mx-auto py-12'>
-                <div className='grid grid-cols-4 gap-10 mb-6'>
+            <div className='container mx-auto py-12 px-4 md:px-0'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-6'>
                     <div>
                         <div>
                             <Image className='mb-6'

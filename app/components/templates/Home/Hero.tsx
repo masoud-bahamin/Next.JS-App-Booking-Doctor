@@ -6,7 +6,7 @@ import { Doctor } from '@/app/page'
 export default function Hero({ doctors }: { doctors: Doctor[] }) {
     return (
         <div className='bg-slate-100'>
-            <div className='container mx-auto flex py-8'>
+            <div className='container mx-auto px-4 md:px-0 flex py-8'>
                 <div className='lg:w-1/2 flex flex-col justify-center gap-8'>
                     <h2 className='text-4xl font-bold'>
                         Consult <span className='text-prim'>Best Doctors</span> Your <br />
@@ -18,7 +18,7 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
                     </div>
                     <SearchBox />
                 </div>
-                <div className='relative'>
+                <div className='relative hidden md:block'>
                     <div>
                         <Image width={500} height={500} src="/img/banner.png" alt="" className=' mx-auto' />
                     </div>

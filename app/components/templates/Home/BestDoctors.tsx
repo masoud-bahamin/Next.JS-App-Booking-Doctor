@@ -8,7 +8,7 @@ import { Doctor } from '@/app/page'
 export default async function BestDoctors({ doctors }: { doctors: Doctor[] }) {
     return (
         <div className=' bg-slate-100'>
-            <div className='py-12 container mx-auto'>
+            <div className='py-12 container mx-auto px-4 md:px-0'>
                 <div className='flex justify-between mb-12'>
                     <h3 className='text-3xl font-bold'>Best Doctors</h3>
                     <div className='flex gap-3'>
@@ -24,7 +24,7 @@ export default async function BestDoctors({ doctors }: { doctors: Doctor[] }) {
                         </button>
                     </div>
                 </div>
-                <div className='flex justify-between mb-12'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
                     {doctors?.map(i => (
                         <DoctorCard {...i} key={i._id} />
                     ))}
