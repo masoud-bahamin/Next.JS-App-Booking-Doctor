@@ -3,7 +3,8 @@ import BestDoctors from "./components/templates/Home/BestDoctors";
 import Hero from "./components/templates/Home/Hero";
 import Specialities from "./components/templates/Home/Specialities";
 import connectToDb from "@/utils/db";
-import baseUrl from "@/utils/baseUrl";
+import Comment from "./components/modules/Comment/Comment";
+import GoToTop from "./components/modules/GoToTop/GoToTop";
 
 export interface Doctor {
   username: string;
@@ -15,7 +16,7 @@ export interface Doctor {
 
 const getData = async () => {
   try {
-    const res = await fetch(`${baseUrl}doctors`, {
+    const res = await fetch(`${process.env.BaseUrl}users/doctors`, {
       next: {
         revalidate: 3
       }
@@ -34,7 +35,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Hero />
+      <Hero doctors={doctors.users}/>
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
       <BestDoctors doctors={doctors.users} />

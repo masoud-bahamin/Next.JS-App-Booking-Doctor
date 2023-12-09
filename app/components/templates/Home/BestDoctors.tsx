@@ -6,8 +6,6 @@ import { Doctor } from '@/app/page'
 
 
 export default async function BestDoctors({ doctors }: { doctors: Doctor[] }) {
-console.log(doctors);
-
     return (
         <div className=' bg-slate-100'>
             <div className='py-12 container mx-auto'>
@@ -27,7 +25,7 @@ console.log(doctors);
                     </div>
                 </div>
                 <div className='flex justify-between mb-12'>
-                    {doctors.map(i => (
+                    {doctors?.map(i => (
                         <DoctorCard {...i} key={i._id} />
                     ))}
                 </div>

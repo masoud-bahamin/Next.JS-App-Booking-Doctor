@@ -1,34 +1,37 @@
+import imageModel from "@/models/image";
 import connectToDb from "@/utils/db";
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path"
 
 export async function POST(req: any) {
+
+    connectToDb()
+
+    const formData = await req.formData()
+
+    const file = formData.get("image")
+    const userId = formData.get("userId")
+
+    if (!file) return NextResponse.json({ resulte: false, message: "image not found , error" })
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const filename = Date.now() + file.name.replaceAll(" ", "_");
+
     try {
-        connectToDb()
-
-        const formData = await req.formData()
-
-        const file = formData.get("image")
-
-        if (!file) return NextResponse.json({ resulte: false, message: "image not found , error" })
-
-        const buffer = Buffer.from(await file.arrayBuffer());
-        const filename = Date.now() + file.name.replaceAll(" ", "_");
-
-        try {
-            await writeFile(
-                path.join(process.cwd(), "public/images/" + filename),
-                buffer
-            )
-        } catch (error) {
-
+        await writeFile(
+            path.join(process.cwd(), "public/uploads/" + filename),
+            buffer
+        )
+        const image = await imageModel.create({ filename, userId })
+        if (image) {
+            return NextResponse.json({ resulte: true, message: "image upload successfully" })
+        } else {
+            return NextResponse.json({ resulte: false, message: "catch error" })
         }
-
-        return NextResponse.json({ resulte: true, file })
-
     } catch (error) {
         return NextResponse.json({ resulte: false, error, message: "catch error" })
     }
+
 
 }

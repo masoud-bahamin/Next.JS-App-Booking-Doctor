@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const User = require("@/models/user")
-const Doctor = require("@/models/doctor")
 
 const schema = mongoose.Schema({
     message: {
@@ -15,10 +14,10 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
     },
-    doctorId: {
+    userId: {
         type: mongoose.Types.ObjectId,
         required: true,
-        ref : "Doctor"
+        ref : "User"
     },
 
 

@@ -5,7 +5,7 @@ const v = new validator;
 const schema = {
     message: { type: "string", min: 1, max: 350 },
     username: { type: "string", min: 1, max: 35},
-    doctorId: { type: "string"},
+    userId: { type: "string"},
     rateNumber: { type: "number", min: 0, max: 5 },
 }
 

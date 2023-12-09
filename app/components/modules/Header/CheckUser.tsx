@@ -1,7 +1,7 @@
 "use client"
 
 import { User } from '@/app/account/page'
-import baseUrl from '@/utils/baseUrl'
+import BaseUrl from '@/utils/baseUrl'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
@@ -13,7 +13,7 @@ export default function CheckUser() {
     const getUserInfo = async (id: string) => {
         setLoading(true)
         try {
-            const res = await fetch(`${baseUrl}users/getUser/${id}`)
+            const res = await fetch(`${BaseUrl}users/getUser/${id}`)
             const data = await res.json()
 
             if (data.resulte) {

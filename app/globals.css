@@ -39,3 +39,9 @@
 .fill-image{
     filter: invert(64%) sepia(19%) saturate(5083%) hue-rotate(166deg) brightness(99%) contrast(87%);
 }
+
+@layer base {
+    html {
+      @apply scroll-smooth;
+    }
+  }

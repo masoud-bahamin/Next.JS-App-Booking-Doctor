@@ -1,8 +1,9 @@
 import React from 'react'
 import SearchBox from '../../modules/SearchBox/SearchBox'
 import Image from 'next/image'
+import { Doctor } from '@/app/page'
 
-export default function Hero() {
+export default function Hero({ doctors }: { doctors: Doctor[] }) {
     return (
         <div className='bg-slate-100'>
             <div className='container mx-auto flex py-8'>
@@ -18,7 +19,7 @@ export default function Hero() {
                 </div>
                 <div className='relative'>
                     <div>
-                        <Image width={600} height={600} src="/img/banner.png" alt="" className=' mx-auto' />
+                        <Image width={500} height={500} src="/img/banner.png" alt="" className=' mx-auto' />
                     </div>
                     <span className='absolute left-0 top-[40%] hero-text-animate3'>
                         <span className='bg-white rounded-lg p-2 flex items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
@@ -29,7 +30,7 @@ export default function Hero() {
                     <span className='absolute right-0 top-[50%] hero-text-animate'>
                         <span className='bg-white rounded-lg p-3 flex flex-col items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
                             <div className='rounded-full w-12 h-12'>
-                                <Image width={50} height={50} src="/img/d1.jpg" alt="" className='rounded-full'/>
+                                <Image width={50} height={50} src="/img/d1.jpg" alt="" className='rounded-full' />
                             </div>
                             <p>Alis Doe</p>
                             <p className='text-xs text-gray-400 font-medium'>MBBS. Cardiologist</p>
@@ -37,14 +38,23 @@ export default function Hero() {
                         </span>
                     </span>
                     <span className='absolute right-0 bottom-5 animate-bounce'>
-                        <div className='bg-white rounded-lg p-3 text-gray-600 font-semibold text-xs'>
+                        <div className='bg-white rounded-lg p-3 text-gray-600 font-semibold text-xs cursor-pointer'>
                             <p className='mb-3'>Meet Our Doctors</p>
                             <div className='flex'>
-                            {Array(6).fill(0).map(i => (
-                               < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
-                                 <Image width={40} height={40} src="/img/d2.jpg" alt="" className='rounded-full border border-prim'/>
+                                {doctors.map(i => (
+                                    < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
+                                        <Image width={40} height={40} src={`/uploads/${i.img.reverse()[0].filename}`} alt="" className='rounded-full border border-prim' />
+                                    </div>
+                                ))}
+                                < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
+                                    <Image width={40} height={40} src={`/img/d1.jpg`} alt="" className='rounded-full border border-prim' />
+                                </div>
+                                < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
+                                 <Image width={40} height={40} src={`/img/d2.jpg`} alt="" className='rounded-full border border-prim'/>
                                </div>
-                            ))}
+                                < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
+                                 <div className='rounded-full w-9 h-9 border text-white bg-prim flex justify-center items-center text-xs font-thin' >20k+</div>
+                               </div>
                             </div>
                         </div>
                     </span>

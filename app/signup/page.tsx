@@ -1,6 +1,6 @@
 "use client"
 
-import baseUrl from '@/utils/baseUrl'
+import BaseUrl from '@/utils/baseUrl'
 import signupValidations from '@/validations/clientValidations/signin'
 import { Field, Form, Formik } from 'formik'
 import Image from 'next/image'
@@ -8,18 +8,20 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
+import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb'
 
 export default function Signup() {
 
   const [loading, setLoading] = useState<boolean>(false)
+  const [role, setRole] = useState("USER")
   const router = useRouter()
 
   const signupUser = async ({ email, username, password }: { email: string, username: string, password: string }) => {
     setLoading(true)
     try {
-      const res = await fetch(`${baseUrl}/users/create`, {
+      const res = await fetch(`${BaseUrl}/users/create`, {
         method: "POST",
-        body: JSON.stringify({ email, username, password })
+        body: JSON.stringify({ email, username, password , role})
       })
       const data = await res.json()
       console.log(data);
@@ -43,8 +45,10 @@ export default function Signup() {
     setLoading(false)
 
   }
+
   return (
-    <div className='py-20'>
+    <div className=''>
+      <Breadcrumb route='SignUp' title='Sign Up' />
       <div className='max-w-5xl mx-auto flex items-center gap-5'>
         <div>
           <Image
@@ -77,13 +81,13 @@ export default function Signup() {
                   <h3 className='text-lg font-medium mb-3'>Start as :</h3>
                   <div className='flex border rounded-md'>
                     <div className='flex items-center gap-3 w-1/2 border-r p-4'>
-                      <input className='rounded-full'
-                        type="checkbox" name="patientCheckbox" id="patientCheckbox" defaultChecked />
+                      <input className='rounded-full' onChange={() => setRole("USER")}
+                        type="radio" name="roleCheckbox" id="patientCheckbox" defaultChecked />
                       <label htmlFor="patientCheckbox" className='text-gray-500 text-sm'>Patient</label>
                     </div>
                     <div className='flex items-center gap-3 w-1/2 p-4'>
-                      <input className='rounded-full'
-                        type="checkbox" name="doctorCheckbox" id="doctorCheckbox" />
+                      <input className='rounded-full' onChange={() => setRole("DOCTOR")}
+                        type="radio" name="roleCheckbox" id="doctorCheckbox"  />
                       <label htmlFor="doctorCheckbox" className='text-gray-500 text-sm'>Doctor</label>
                     </div>
                   </div>

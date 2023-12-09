@@ -1,17 +1,23 @@
 "use client"
 
-// pages/index.tsx
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import baseUrl from '@/utils/baseUrl';
+import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb';
+import BaseUrl from '@/utils/baseUrl';
 
 export interface User {
     username: string,
     email: string,
     password: string,
-    img: { filename: string }[]
+    img: { filename: string }[],
+    role : string , 
+    location : string ,
+    age : number ,
+    bio : string ,
+    name : string,
+    phone : string
 }
 
 
@@ -53,7 +59,7 @@ const HomePage: React.FC = () => {
         try {
             console.log("submit shod :))");
 
-            const response = await fetch(`${baseUrl}images/upload`, {
+            const response = await fetch(`${BaseUrl}images/upload`, {
                 method: 'POST',
                 body: formData,
             });
@@ -81,54 +87,9 @@ const HomePage: React.FC = () => {
         setLoading(false)
     };
 
-    // const handleUpload = async () => {
-    //     if (!image) {
-    //         console.error('No image selected');
-    //         return;
-    //     }
-    //     if (!token) {
-    //         console.error('No token selected');
-    //         return;
-    //     }
-    //     setLoading(true)
-    //     const formData = new FormData();
-    //     formData.append('image', image);
-    //     formData.append('userId', token);
-
-    //     try {
-    //         console.log("submit shod :))");
-
-    //         const response = await fetch(`${baseUrl}doctors/update/656e3cc0d9cca355ae638960`, {
-    //             method: 'POST',
-    //             body: formData,
-    //         });
-    //         console.log("wow response", response);
-
-    //         const data = await response.json();
-    //         console.log('Image uploaded successfully:', data);
-    //         if (data.resulte) {
-    //             Swal.fire({
-    //                 icon: "success",
-    //                 text: "Image uploaded successfully"
-    //             })
-    //             setImage(null)
-    //             getUserInfo(token)
-    //         } else {
-    //             Swal.fire({
-    //                 icon: "error",
-    //                 text: "Image uploade error"
-    //             })
-    //         }
-
-    //     } catch (error) {
-    //         console.error('Error uploading image', error);
-    //     }
-    //     setLoading(false)
-    // };
-
     const getUserInfo = async (id: string) => {
         try {
-            const res = await fetch(`${baseUrl}users/getUser/${id}`)
+            const res = await fetch(`${BaseUrl}users/getUser/${id}`)
             const data = await res.json()
 
             if (data.resulte) {
@@ -145,12 +106,12 @@ const HomePage: React.FC = () => {
 
 
     useEffect(() => {
-        if(image){
+        if (image) {
             const upImage = URL.createObjectURL(image)
             setUploadeImage(upImage)
         }
 
-    } , [image])
+    }, [image])
 
     useEffect(() => {
         const dataToken = getToken("bookingToken")
@@ -164,8 +125,9 @@ const HomePage: React.FC = () => {
     console.log(userInfo);
 
     return (
-        <div className='bg-slate-100 py-12'>
-            <div className='container mx-auto flex gap-8'>
+        <div className='bg-slate-100'>
+            <Breadcrumb title='Account' route='Account'/>
+            <div className='container mx-auto py-12 flex gap-8'>
                 <div className='bg-white border w-1/4 h-fit'>
                     <div className='p-8'>
                         <div>
@@ -180,33 +142,33 @@ const HomePage: React.FC = () => {
                         </div>
                         <div className='text-center relative'>
                             {uploadeImage ? (
-                                 <Image
-                                 width={120}
-                                 height={120}
-                                 src={uploadeImage}
-                                 alt=""
-                                 className='w-32 h-32 mx-auto rounded-full'
-                             />
+                                <Image
+                                    width={120}
+                                    height={120}
+                                    src={uploadeImage}
+                                    alt=""
+                                    className='w-32 h-32 mx-auto rounded-full'
+                                />
                             ) : (
-                            <>
-                                {userInfo.img?.length > 0 ? (
-                                    <Image
-                                        width={120}
-                                        height={120}
-                                        src={"/uploads/" + userInfo?.img[userInfo.img.length - 1]?.filename}
-                                        alt=""
-                                        className='w-32 h-32 mx-auto rounded-full'
-                                    />
-                                ) : (
-                                    <Image
-                                        width={120}
-                                        height={120}
-                                        src={"/img/d1.jpg"}
-                                        alt=""
-                                        className='w-32 mx-auto rounded-full'
-                                    />
-                                )}
-                            </>)}
+                                <>
+                                    {userInfo.img?.length > 0 ? (
+                                        <Image
+                                            width={120}
+                                            height={120}
+                                            src={"/uploads/" + userInfo?.img[userInfo.img.length - 1]?.filename}
+                                            alt=""
+                                            className='w-32 h-32 mx-auto rounded-full'
+                                        />
+                                    ) : (
+                                        <Image
+                                            width={120}
+                                            height={120}
+                                            src={"/img/user.png"}
+                                            alt=""
+                                            className='w-32 mx-auto rounded-full'
+                                        />
+                                    )}
+                                </>)}
                             <label htmlFor="avatarInput" className='text-center'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 inline border border-prim rounded-full p-1 -mt-8 -mr-8">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
@@ -253,7 +215,10 @@ const HomePage: React.FC = () => {
                     </ul>
                 </div>
                 <div className='bg-white w-3/4 p-8'>
-                    <h3 className='text-xl font-semibold mb-8'>Profile Setting</h3>
+                    <div className='flex justify-between'>
+                        <h3 className='text-xl font-semibold mb-8'>Profile Setting</h3>
+                        <h3 className='text-lg text-prim font-semibold mb-8'>{userInfo?.role}</h3>
+                    </div>
                     <div className='flex gap-4'>
                         <div className='lg:min-w-[280px]'>
                             <p className='text-prim text-xs'>Personal Details</p>
@@ -262,7 +227,7 @@ const HomePage: React.FC = () => {
                             <h3 className='text-lg font-semibold mb-8'>Your Details</h3>
                             <form action="" className='lg:min-w-[700px]'>
                                 <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={'Name...'}
+                                    placeholder={userInfo?.name || 'Name...'}
                                     type="text" />
                                 <input className='border outline-none w-full p-3 mb-3'
                                     placeholder={userInfo?.email || 'Email...'}
@@ -271,10 +236,10 @@ const HomePage: React.FC = () => {
                                     placeholder={userInfo?.username || 'UserName...'}
                                     type="text" />
                                 <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={'Mobile Number...'}
+                                    placeholder={userInfo?.phone || 'Mobile Number...'}
                                     type="number" />
                                 <textarea className='border outline-none w-full p-3 mb-3 h-32'
-                                    placeholder={'Bio...'} />
+                                    placeholder={userInfo?.bio || 'Bio...'} />
                                 <h3 className='text-lg font-semibold mt-8 mb-6'>Your Location</h3>
                                 <select className='border outline-none w-full p-3 mb-3 text-gray-600'
                                     name="" id="">
@@ -292,12 +257,6 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
     );
 };

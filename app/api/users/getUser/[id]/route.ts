@@ -9,7 +9,7 @@ export async function GET(req: Request, context: { params: { id: string } }) {
         connectToDb()
         const { id } = context.params
         if (isValidObjectId(id)) {
-            const user = await userModel.findOne({ _id: id }).populate("img").lean()
+            const user = await userModel.findOne({ _id: id }, "-__v").populate("img").populate("comments").lean()
             if (user) {
                 return NextResponse.json({ resulte: true, message: "user created successfully", user })
             } else {
