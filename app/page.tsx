@@ -3,8 +3,6 @@ import BestDoctors from "./components/templates/Home/BestDoctors";
 import Hero from "./components/templates/Home/Hero";
 import Specialities from "./components/templates/Home/Specialities";
 import connectToDb from "@/utils/db";
-import Comment from "./components/modules/Comment/Comment";
-import GoToTop from "./components/modules/GoToTop/GoToTop";
 import BaseUrl from "@/utils/baseUrl";
 
 export interface Doctor {
@@ -15,24 +13,41 @@ export interface Doctor {
   img: { filename: string }[]
 }
 
-const getData = async () => {
-  try {
-    const res = await fetch(`${BaseUrl}users/doctors`, {
-      next: {
-        revalidate: 3
-      }
-    })
-    return res.json()
-  } catch (error) {
-    console.log(error);
-  }
+// const getData = async () => {
+//   try {
+//     const res = await fetch(`${BaseUrl}users`, {
+//       next: {
+//         revalidate: 3
+//       }
+//     })
+//     return res.json()
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-}
+// }
 
 export default async function Home() {
   // connectToDb()
   // const doctors : Doctor[] = await doctorModel.find({})
-  let doctors: { users: Doctor[] } = await getData()
+  // let doctors: { users: Doctor[] } = await getData()
+
+  let doctors : { users: Doctor[] } = {users : [
+    {
+      username: "masoudddd",
+      email: "masemail",
+      password: "123456",
+      _id: "vbghjkmnb",
+      img: [{ filename: "1701971662908u1.jpg" }]
+    },
+    {
+      username: "masoudddd1122",
+      email: "masemail22",
+      password: "12345622",
+      _id: "vbghjkmnb22",
+      img: [{ filename: "1701971662908u1.jpg" }]
+    },
+  ]}
 
   return (
     <div>
