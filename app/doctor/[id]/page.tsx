@@ -1,11 +1,12 @@
 import Breadcrumb from '@/app/components/modules/Breadcrumb/Breadcrumb'
 import Rating from '@/app/components/modules/Comment/Rating'
 import TabSection from '@/app/components/templates/Doctor/TabSection'
+import BaseUrl from '@/utils/baseUrl'
 import Image from 'next/image'
 import React from 'react'
 
 const getDoctorData = async (id: string) => {
-    const res = await fetch(`${process.env.BaseUrl}users/getUser/${id}`,{
+    const res = await fetch(`${BaseUrl}users/getUser/${id}`,{
         next : {
             revalidate : 5
         }

@@ -5,6 +5,7 @@ import Specialities from "./components/templates/Home/Specialities";
 import connectToDb from "@/utils/db";
 import Comment from "./components/modules/Comment/Comment";
 import GoToTop from "./components/modules/GoToTop/GoToTop";
+import BaseUrl from "@/utils/baseUrl";
 
 export interface Doctor {
   username: string;
@@ -16,7 +17,7 @@ export interface Doctor {
 
 const getData = async () => {
   try {
-    const res = await fetch(`${process.env.BaseUrl}users/doctors`, {
+    const res = await fetch(`${BaseUrl}users/doctors`, {
       next: {
         revalidate: 3
       }
