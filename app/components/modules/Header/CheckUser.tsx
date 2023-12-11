@@ -50,7 +50,7 @@ export default function CheckUser() {
                     {userInfo ? (
                         <Link href={"/account"} className='btn-b text-sm'>Account</Link>
                     ) : (
-                        <Link href={"/login"} className='btn-b text-sm'>LOGIN / SIGNUP</Link>
+                        <Link href={"/login"} className='btn-b text-sm'>LOGIN <span className='hidden sm:inline-block'>/ SIGNUP</span></Link>
                     )}
                 </>)}
         </div>

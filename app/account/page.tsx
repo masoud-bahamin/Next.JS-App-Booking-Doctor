@@ -127,7 +127,7 @@ const HomePage: React.FC = () => {
     return (
         <div className='bg-slate-100'>
             <Breadcrumb title='Account' route='Account'/>
-            <div className='container mx-auto px-4 md:px-0 py-12 flex flex-wrap lg:flex-nowrap gap-8'>
+            <div className='container mx-auto px-4 md:px-0 py-12 flex flex-wrap md:flex-nowrap gap-8'>
                 <div className='bg-white border w-full lg:w-1/4 h-fit'>
                     <div className='p-8'>
                         <div>
@@ -220,12 +220,12 @@ const HomePage: React.FC = () => {
                         <h3 className='text-lg text-prim font-semibold mb-8'>{userInfo?.role}</h3>
                     </div>
                     <div className='flex gap-4'>
-                        <div className='hidden md:block lg:min-w-[280px]'>
+                        <div className='hidden lg:block lg:min-w-[280px]'>
                             <p className='text-prim text-xs'>Personal Details</p>
                         </div>
                         <div className='px-0 lg:px-6 lg:border-l'>
                             <h3 className='text-lg font-semibold mb-8'>Your Details</h3>
-                            <form action="" className='lg:min-w-[700px]'>
+                            <form action="" className='xl:min-w-[600px]'>
                                 <input className='border outline-none w-full p-3 mb-3'
                                     placeholder={userInfo?.name || 'Name...'}
                                     type="text" />

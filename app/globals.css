@@ -5,10 +5,10 @@
 
 @layer components {
     .btn {
-        @apply bg-prim py-3 px-6 text-white h-fit rounded-lg hover:bg-transparent hover:text-prim border border-prim transition-all duration-150
+        @apply bg-prim py-2 md:py-3 px-6 text-white h-fit rounded-lg hover:bg-transparent hover:text-prim border border-prim transition-all duration-150
     }
     .btn-b {
-        @apply py-3 px-6 text-prim h-fit rounded-lg hover:bg-transparent hover:text-white border hover:bg-prim  border-prim transition-all duration-150
+        @apply py-2 md:py-3 px-6 text-prim h-fit rounded-lg hover:bg-transparent hover:text-white border hover:bg-prim  border-prim transition-all duration-150
     }
 }
 
