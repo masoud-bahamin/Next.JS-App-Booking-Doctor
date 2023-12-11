@@ -15,19 +15,41 @@ export async function POST(req: Request) {
                 return NextResponse.json({ resulte: true, message: "user created successfully", user }, {
                     status: 200,
                     headers: {
-                      'Access-Control-Allow-Origin': '*',
-                      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    }})
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    }
+                })
             } else {
-                return NextResponse.json({ resulte: false, message: "user not found", })
+                return NextResponse.json({ resulte: false, message: "user not found", }, {
+                    status: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    }
+                })
             }
         } else {
-            return NextResponse.json({ resulte: false, message: "user not found", error: validation })
+            return NextResponse.json({ resulte: false, message: "user not found", error: validation }, {
+                status: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }
+            })
         }
 
 
     } catch (error) {
-        return NextResponse.json({ resulte: false, message: "catch error", error })
+        return NextResponse.json({ resulte: false, message: "catch error", error }, {
+            status: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
+        })
     }
 }

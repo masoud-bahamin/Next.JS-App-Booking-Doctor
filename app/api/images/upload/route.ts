@@ -28,15 +28,30 @@ export async function POST(req: any) {
             return NextResponse.json({ resulte: true, message: "image upload successfully" }, {
                 status: 200,
                 headers: {
-                  'Access-Control-Allow-Origin': '*',
-                  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                }})
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }
+            })
         } else {
-            return NextResponse.json({ resulte: false, message: "catch error" })
+            return NextResponse.json({ resulte: false, message: "catch error" }, {
+                status: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }
+            })
         }
     } catch (error) {
-        return NextResponse.json({ resulte: false, error, message: "catch error" })
+        return NextResponse.json({ resulte: false, error, message: "catch error" }, {
+            status: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
+        })
     }
 
 
