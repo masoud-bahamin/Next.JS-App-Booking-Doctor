@@ -25,7 +25,13 @@ export async function POST(req: any) {
         )
         const image = await imageModel.create({ filename, userId })
         if (image) {
-            return NextResponse.json({ resulte: true, message: "image upload successfully" })
+            return NextResponse.json({ resulte: true, message: "image upload successfully" }, {
+                status: 200,
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }})
         } else {
             return NextResponse.json({ resulte: false, message: "catch error" })
         }

@@ -12,7 +12,13 @@ export async function POST(req: Request) {
         if (validation === true) {
             const user = await userModel.create(data)
             if (user) {
-                return NextResponse.json({ resulte: true, message: "user created successfully", user })
+                return NextResponse.json({ resulte: true, message: "user created successfully", user }, {
+                    status: 200,
+                    headers: {
+                      'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    }})
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found", })
             }
