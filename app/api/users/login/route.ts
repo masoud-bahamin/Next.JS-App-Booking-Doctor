@@ -15,21 +15,50 @@ export async function POST(req: Request) {
                     return NextResponse.json({ resulte: true, user }, {
                         status: 200,
                         headers: {
-                          'Access-Control-Allow-Origin': '*',
-                          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                        }})
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                        }
+                    })
                 } else {
-                    return NextResponse.json({ resulte: false, error: "informatin not valid" })
+                    return NextResponse.json({ resulte: false, error: "informatin not valid" }, {
+                        status: 200,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                        }
+                    })
                 }
             } else {
-                return NextResponse.json({ resulte: false, error: "user not found" })
+                return NextResponse.json({ resulte: false, error: "user not found" }, {
+                    status: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    }
+                })
             }
         } else {
-            return NextResponse.json({ resulte: false, error: validation })
+            return NextResponse.json({ resulte: false, error: validation }, {
+                status: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }
+            })
         }
     } catch (error) {
-        return NextResponse.json({ resulte: false, error, massage: "catch error" })
+        return NextResponse.json({ resulte: false, error, massage: "catch error" }, {
+            status: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
+        })
     }
 
 }
