@@ -3,6 +3,8 @@ import connectToDb from "@/utils/db";
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path"
+const fs = require('fs');
+
 
 export async function POST(req: any) {
 
@@ -17,6 +19,31 @@ export async function POST(req: any) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const filename = Date.now() + file.name.replaceAll(" ", "_");
+
+    const filePath = `/var/task/public/uploads/${filename}`;
+
+    fs.access(filePath, fs.constants.W_OK, (err : any) => {
+        if (err) {
+          console.error(`خطا: فایل ${filePath} دسترسی نوشتن ندارد.`);
+          return;
+        }
+      
+        // 2. بررسی وضعیت مونت سیستم فایل
+        // (این قسمت به توجه به سیستم فایل شما نیاز به تنظیمات خاص دارد)
+      
+        // 3. بررسی صحت مسیر
+        fs.access(filePath, fs.constants.F_OK, (err : any) => {
+          if (err) {
+            console.error(`خطا: مسیر ${filePath} صحیح نیست یا فایل وجود ندارد.`);
+            return;
+          }
+      
+          // اجرای عملیات نوشتن به فایل
+          // این قسمت را با کدهای مربوط به عملیات نوشتن خود جایگزین کنید
+      
+          console.log(`عملیات نوشتن به فایل ${filePath} با موفقیت انجام شد.`);
+        });
+      });
 
     try {
         await writeFile(
