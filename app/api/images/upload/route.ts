@@ -20,7 +20,7 @@ export async function POST(req: any) {
 
     try {
         await writeFile(
-            path.join(process.cwd(), "/uploads/" + filename),
+            path.join("/uploads/" + filename),
             buffer
         )
         const image = await imageModel.create({ filename, userId })
@@ -34,8 +34,8 @@ export async function POST(req: any) {
                 }
             })
         } else {
-            return NextResponse.json({ resulte: false, message: "catch error" }, {
-                status: 200,
+            return NextResponse.json({ resulte: false, message: "image not made" }, {
+                status: 400,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -45,7 +45,7 @@ export async function POST(req: any) {
         }
     } catch (error) {
         return NextResponse.json({ resulte: false, error, message: "catch error" }, {
-            status: 200,
+            status: 500,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',

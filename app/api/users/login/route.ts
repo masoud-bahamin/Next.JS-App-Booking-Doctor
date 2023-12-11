@@ -22,7 +22,7 @@ export async function POST(req: Request) {
                     })
                 } else {
                     return NextResponse.json({ resulte: false, error: "informatin not valid" }, {
-                        status: 200,
+                        status: 400,
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
                 }
             } else {
                 return NextResponse.json({ resulte: false, error: "user not found" }, {
-                    status: 200,
+                    status: 420,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
             }
         } else {
             return NextResponse.json({ resulte: false, error: validation }, {
-                status: 200,
+                status: 500,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',

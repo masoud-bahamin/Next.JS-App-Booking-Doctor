@@ -22,7 +22,7 @@ export async function POST(req: Request) {
                 })
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found", }, {
-                    status: 200,
+                    status: 420,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
             }
         } else {
             return NextResponse.json({ resulte: false, message: "user not found", error: validation }, {
-                status: 200,
+                status: 400,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
     } catch (error) {
         return NextResponse.json({ resulte: false, message: "catch error", error }, {
-            status: 200,
+            status: 500,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
