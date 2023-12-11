@@ -50,7 +50,7 @@ export default function Signup() {
     <div className=''>
       <Breadcrumb route='SignUp' title='Sign Up' />
       <div className='max-w-5xl mx-auto flex items-center gap-5'>
-        <div>
+        <div className='hidden md:block'>
           <Image
             width={600}
             height={10}

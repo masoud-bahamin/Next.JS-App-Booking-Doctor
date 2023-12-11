@@ -4,7 +4,7 @@ import './globals.css'
 import Header from './components/modules/Header/Header'
 import Footer from './components/modules/Footer/Footer'
 
-const poppins = Poppins({ subsets: ['latin']  , weight : "400"})
+const poppins = Poppins({ subsets: ['latin'], weight: "400" })
 
 export const metadata: Metadata = {
   title: 'Bahamin Booking App',
@@ -22,7 +22,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        </body>
+      </body>
     </html>
   )
 }

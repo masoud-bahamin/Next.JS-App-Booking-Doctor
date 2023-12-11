@@ -64,7 +64,7 @@ export default function Comment({ comments }: { comments: [{ message: string, us
                 <Rating />
                 <div>
                     {comments?.map(comment => (
-                        <div key={comment.message + comment.username} className='flex gap-2 p-8'>
+                        <div key={comment.message + comment.username} className='flex gap-2 p-0 py-6 lg:p-8'>
                             <div className=' flex-shrink-0'>
                                 <Image width={50} height={50} src={"/img/user.png"} className='' alt='avatar' />
                             </div>
@@ -77,7 +77,7 @@ export default function Comment({ comments }: { comments: [{ message: string, us
                     ))}
 
 
-                    <div className='p-8'>
+                    <div className='p-0 py-6 lg:p-8'>
                         <textarea value={message} onChange={e => setMessage(e.target.value)}
                             className='border rounded-md w-full p-3 text-sm outline-none'
                             placeholder='write a comment...'

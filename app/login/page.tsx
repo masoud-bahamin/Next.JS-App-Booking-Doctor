@@ -8,10 +8,10 @@ export default function Signup() {
         <div className=''>
             <Breadcrumb title='Login' route='Login' />
             <div className='max-w-5xl mx-auto flex items-center gap-5'>
-                <div>
+                <div className='mx-auto'>
                     <LoginForm />
                 </div>
-                <div>
+                <div className='hidden md:block'>
                     <Image
                         width={600}
                         height={10}

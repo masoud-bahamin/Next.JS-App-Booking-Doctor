@@ -12,13 +12,13 @@ export default function TabSection({user} : {user : User & {comments : [{message
         <div>
             <div className='text-gray-800 border-b py-4'>
                 <span onClick={() => setTab("appointment")}
-                    className={`${tab === "appointment" ? "text-prim border-b-prim border-b-2" : ""} px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Locations</span>
+                    className={`${tab === "appointment" ? "text-prim border-b-prim border-b-2" : ""} px-4 sm:px-8 md:px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Locations</span>
                 <span onClick={() => setTab("overview")}
-                    className={`${tab === "overview" ? "text-prim border-b-prim border-b-2" : ""} px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Overview</span>
+                    className={`${tab === "overview" ? "text-prim border-b-prim border-b-2" : ""} px-4 sm:px-8 md:px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Overview</span>
                 <span onClick={() => setTab("review")}
-                    className={`${tab === "review" ? "text-prim border-b-prim border-b-2" : ""} px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Reviews</span>
+                    className={`${tab === "review" ? "text-prim border-b-prim border-b-2" : ""} px-4 sm:px-8 md:px-12 py-4 font-semibold text-sm hover:text-prim hover:border-b-prim hover:border-b-2 cursor-pointer`}>Reviews</span>
             </div>
-            <div className='p-12'>
+            <div className='py-6 lg:p-12'>
                 {tab === "appointment" ? (<Appointment />) : tab === "overview" ? ( <Overview username={user?.username} />) : ( <Comment comments={user?.comments} />)}   
             </div>
         </div>
