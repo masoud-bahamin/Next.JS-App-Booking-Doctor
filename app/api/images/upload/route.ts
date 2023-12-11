@@ -1,5 +1,6 @@
 import imageModel from "@/models/image";
 import connectToDb from "@/utils/db";
+import { writeFileSync } from "fs";
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path"
@@ -37,7 +38,10 @@ export async function POST(req: any) {
             console.error(`خطا: مسیر ${filePath} صحیح نیست یا فایل وجود ندارد.`);
             return;
           }
-      
+         writeFileSync(
+            path.join(process.cwd(), "public/uploads/" + filename),
+            buffer
+        )
           // اجرای عملیات نوشتن به فایل
           // این قسمت را با کدهای مربوط به عملیات نوشتن خود جایگزین کنید
       
@@ -46,10 +50,7 @@ export async function POST(req: any) {
       });
 
     try {
-        await writeFile(
-            path.join(process.cwd(), "public/uploads/" + filename),
-            buffer
-        )
+      
         const image = await imageModel.create({ filename, userId })
         if (image) {
             return NextResponse.json({ resulte: true, message: "image upload successfully" }, {
