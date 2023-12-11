@@ -20,7 +20,7 @@ export async function POST(req: any) {
 
     try {
         await writeFile(
-            path.join(process.cwd(), "public/uploads/" + filename),
+            path.join(process.cwd(), "/uploads/" + filename),
             buffer
         )
         const image = await imageModel.create({ filename, userId })
