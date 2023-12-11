@@ -1,9 +1,16 @@
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { isValidObjectId } from "mongoose";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: Request, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
+
+    // NextResponse.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // NextResponse.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    // NextResponse.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    console.log("mas queri" , req.nextUrl.id );
+    
 
     try {
         connectToDb()
@@ -11,7 +18,13 @@ export async function GET(req: Request, context: { params: { id: string } }) {
         if (isValidObjectId(id)) {
             const user = await userModel.findOne({ _id: id }, "-__v").populate("img").populate("comments").lean()
             if (user) {
-                return NextResponse.json({ resulte: true, message: "user created successfully", user })
+                return NextResponse.json({ resulte: true, message: "user created successfully", user }, {
+                    status: 200,
+                    headers: {
+                      'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    }})
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found", })
             }
