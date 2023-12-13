@@ -1,6 +1,38 @@
-import React from 'react'
+"use client"
 
-export default function AppointmentCard({ day }: { day: string }) {
+import React, { useState } from 'react'
+
+type Appointment = {
+    id: string,
+    active: boolean,
+    time: string,
+    title: string
+}
+
+
+
+interface AppointmentCardProps {
+    times: Appointment[],
+    day : string
+}
+
+export default function AppointmentCard({ times , day }: AppointmentCardProps) {
+
+    const [appointmentArrey, setAppointmentArrey] = useState(times)
+
+    const selectAppointment = (id: string) => {
+        setAppointmentArrey(prev => {
+            const array = prev.map(i => {
+                if (i.id === id) {
+                    i.active = true
+                }
+                return i
+            })
+            return array
+        })
+
+    }
+
     return (
         <div className='p-4 border rounded-md flex flex-wrap '>
             <div className='text-slate-800 mb-2 flex items-center gap-2 font-medium'>
@@ -10,11 +42,14 @@ export default function AppointmentCard({ day }: { day: string }) {
                 <span className='text-xs'>{day}</span>
             </div>
             <div className='flex flex-wrap'>
-                <span className='py-1 text-sm px-6'>11:00 am</span>
-                <span className='py-1 text-sm px-6'>12:00 pm</span>
-                <span className='py-1 text-sm px-6'>1:00 pm</span>
-                <span className='py-1 text-sm px-6'>2:00 pm</span>
-                <span className='py-1 text-sm px-6'>3:00 pm</span>
+                {appointmentArrey.map(i => (
+                    <span
+                        onClick={() => selectAppointment(i.id)}
+                        key={i.id}
+                        className={`${i.active ? "text-prim bg-blue-50" : ""} py-1 text-sm px-6 hover:bg-prim hover:text-white rounded-md cursor-pointer`}>
+                        {i.title}
+                    </span>
+                ))}
             </div>
         </div>
     )

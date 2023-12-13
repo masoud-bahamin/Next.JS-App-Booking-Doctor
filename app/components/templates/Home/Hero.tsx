@@ -14,13 +14,13 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
                     <div className='flex gap-6'>
                         <button className='btn'>Start a Consult</button>
-                        <Image width={100} height={100} src="/img/down-arrow-img.png" alt="" />
+                        <Image width={100} height={100} src="/img/down-arrow-img.png" alt="" className=' h-auto w-auto'/>
                     </div>
                     <SearchBox />
                 </div>
                 <div className='relative hidden md:block'>
                     <div>
-                        <Image width={500} height={500} src="/img/banner.png" alt="" className=' mx-auto' />
+                        <Image width={500} height={500} src="/img/banner.png" alt="" className=' mx-auto h-auto w-auto' />
                     </div>
                     <span className='absolute left-0 top-[40%] hero-text-animate3'>
                         <span className='bg-white rounded-lg p-2 flex items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
@@ -44,14 +44,14 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
                             <div className='flex'>
                                 {doctors.map(i => (
                                     < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
-                                        <Image width={40} height={40} src={`/uploads/${i.img.reverse()[0].filename}`} alt="" className='rounded-full border border-prim' />
+                                        <Image width={40} height={40} src={`/uploads/${i.img.reverse()[0].filename}`} alt="" className='rounded-full border border-prim  h-auto w-auto' />
                                     </div>
                                 ))}
                                 < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
-                                    <Image width={40} height={40} src={`/img/d1.jpg`} alt="" className='rounded-full border border-prim' />
+                                    <Image width={40} height={40} src={`/img/d1.jpg`} alt="" className='rounded-full border border-prim  h-auto w-auto' />
                                 </div>
                                 < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
-                                 <Image width={40} height={40} src={`/img/d2.jpg`} alt="" className='rounded-full border border-prim'/>
+                                 <Image width={40} height={40} src={`/img/d2.jpg`} alt="" className='rounded-full border border-prim  h-auto w-auto'/>
                                </div>
                                 < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
                                  <div className='rounded-full w-9 h-9 border text-white bg-prim flex justify-center items-center text-xs font-thin' >20k+</div>

@@ -91,8 +91,8 @@ export default function AccountAvatar({userInfo , token , getUserInfo} : Account
             <div className='text-center relative'>
                 {uploadeImage ? (
                     <Image
-                        width={120}
-                        height={120}
+                        width={140}
+                        height={140}
                         src={uploadeImage}
                         alt=""
                         className='w-32 h-32 mx-auto rounded-full'
@@ -101,16 +101,16 @@ export default function AccountAvatar({userInfo , token , getUserInfo} : Account
                     <>
                         {userInfo.img?.length > 0 ? (
                             <Image
-                                width={120}
-                                height={120}
+                                width={140}
+                                height={140}
                                 src={"/uploads/" + userInfo?.img[userInfo.img.length - 1]?.filename}
                                 alt=""
                                 className='w-32 h-32 mx-auto rounded-full'
                             />
                         ) : (
                             <Image
-                                width={120}
-                                height={120}
+                                width={140}
+                                height={140}
                                 src={"/img/user.png"}
                                 alt=""
                                 className='w-32 mx-auto rounded-full'

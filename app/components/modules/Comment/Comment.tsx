@@ -5,8 +5,10 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import Rating from './Rating'
+import { CommentType } from '../../templates/Doctor/TabSection'
 
-export default function Comment({ comments }: { comments: [{ message: string, username: string }] }) {
+
+export default function Comment({ comments }: CommentType ) {
 
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
@@ -57,11 +59,14 @@ export default function Comment({ comments }: { comments: [{ message: string, us
 
     }
 
+    console.log(comments);
+    
+
     return (
         <>
             <h3 className='text-xl mb-6 font-medium'>Comments and Reviews</h3>
             <div className='max-w-xl mx-auto'>
-                <Rating />
+
                 <div>
                     {comments?.map(comment => (
                         <div key={comment.message + comment.username} className='flex gap-2 p-0 py-6 lg:p-8'>
@@ -71,7 +76,8 @@ export default function Comment({ comments }: { comments: [{ message: string, us
                             <div>
                                 <p className=' font-medium mb-1'>{comment.username}</p>
                                 <p className='text-gray-400 text-xs mb-2'>28 12 2023</p>
-                                <p className='text-gray-500 text-sm'>{comment.message}</p>
+                                <Rating rate={comment.rateNumber}/>
+                                <p className='text-gray-500 text-sm mt-1'>{comment.message}</p>
                             </div>
                         </div>
                     ))}

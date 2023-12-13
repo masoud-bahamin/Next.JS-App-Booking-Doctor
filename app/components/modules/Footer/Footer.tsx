@@ -11,7 +11,7 @@ export default function Footer() {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-6'>
                     <div>
                         <div>
-                            <Image className='mb-6'
+                            <Image className='mb-6  h-auto w-auto'
                                 width={200} height={100}
                                 src={"/img/logo1.png"} alt=''
                             />

@@ -14,7 +14,7 @@ export default function Header() {
         <div>
             <header className='flex items-center gap-12 container mx-auto py-6 px-4 md:px-0'>
                 <div>
-                    <Image width={200} height={200} src="/img/logo3.png" alt="" className='md:w-40 w-20' />
+                    <Image width={100} height={20} src="/img/logo3.png" alt="" className='md:w-40 w-20' />
                 </div>
                
                 <div className=''>

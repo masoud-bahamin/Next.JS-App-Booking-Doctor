@@ -30,7 +30,7 @@ export default async function page({ params }: { params: { id: string } }) {
                         <div>
                             <p className='font-medium mb-2'>{user?.username}</p>
                             <p className='text-prim text-xs mb-2'>Dentist</p>
-                            <Rating />
+                            <Rating rate={4}/>
                         </div>
                     </div>
                     <div className='max-w-sm ml-auto'>
@@ -60,7 +60,7 @@ export default async function page({ params }: { params: { id: string } }) {
                             <span className='text-xs'>Astrailia</span>
                         </div>
                         <button className='btn-b w-full mb-3 text-xs'>ADD FEEDBACK</button>
-                        <button className='btn w-full mb-3 text-xs'>BOOK APPOINTMENT</button>
+                        <a className='btn inline-block text-center w-full mb-3 text-xs' href="#appointment">BOOK APPOINTMENT</a>
                     </div>
                 </div>
                 <TabSection user={user} />
