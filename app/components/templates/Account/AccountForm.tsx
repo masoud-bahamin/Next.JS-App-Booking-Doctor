@@ -22,7 +22,7 @@ export default function AccountForm({ userInfo, token, getUserInfo }: AccountFor
         if (token === null) return false
         setLoading(true)
         try {
-            const res = await fetch(`http://localhost:3000/api/users/update/${token}`, {
+            const res = await fetch(`${BaseUrl}users/update/${token}`, {
                 method: "PUT",
                 body: JSON.stringify(user)
             })
