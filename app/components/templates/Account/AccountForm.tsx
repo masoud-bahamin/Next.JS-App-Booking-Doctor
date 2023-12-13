@@ -77,11 +77,11 @@ export default function AccountForm({ userInfo, token, getUserInfo }: AccountFor
                     >
                         {({ errors, touched }) => (
                             <Form className='xl:min-w-[600px]'>
-                                {touched.email ? <p className='text-xs py-2 text-rose-400'>you can't change it</p> : null}
+                                {touched.email ? <p className='text-xs py-2 text-rose-400'>you can NOT change it</p> : null}
                                 <Field name="email" className='border outline-none w-full p-3 mb-3 text-gray-500'
                                     placeholder={userInfo?.email || 'Email...'}
                                     type="email" />
-                                {touched.username ? <p className='text-xs py-2 text-rose-400'>you can't change it</p> : null}
+                                {touched.username ? <p className='text-xs py-2 text-rose-400'>you can NOT change it</p> : null}
                                 <Field name="username" className='border outline-none w-full p-3 mb-3 text-gray-500'
                                     placeholder={userInfo?.username || 'UserName...'}
                                     type="text" />
