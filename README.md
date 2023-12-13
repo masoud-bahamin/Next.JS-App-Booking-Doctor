@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a full-stack Web applications with Next.js
+
+you can see this online    https://bahamin-booking.vercel.app/
+
+you can signup and login as user or doctor , update and change your informations in account page
+
+get informations from api
+
+uses packege : moongoose , Formik , yup , fastest-validator , sweetalert2
+
+
+
+
+
+
+
+
+
+
+
+
+[Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
