@@ -1,32 +1,29 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
 import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb';
 import BaseUrl from '@/utils/baseUrl';
+import AccountForm from '../components/templates/Account/AccountForm';
+import AccountAvatar from '../components/templates/Account/AccountAvatar';
 
 export interface User {
     username: string,
     email: string,
     password: string,
     img: { filename: string }[],
-    role : string , 
-    location : string ,
-    age : number ,
-    bio : string ,
-    name : string,
-    phone : string
+    role: string,
+    location: string,
+    age: number,
+    bio: string,
+    name: string,
+    phone: string
 }
 
 
 const HomePage: React.FC = () => {
 
-    const [image, setImage] = useState<File | null>(null);
-    const [uploadeImage, setUploadeImage] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState<User>({} as User);
-    const [loading, setLoading] = useState(false)
     const [token, setToken] = useState<string | null>(null)
     const router = useRouter()
 
@@ -36,56 +33,6 @@ const HomePage: React.FC = () => {
         if (parts.length === 2) return parts.pop()?.split(";").shift()
     }
 
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files && e.target.files[0];
-        setImage(file || null);
-    };
-
-    const handleUpload = async () => {
-        if (!image) {
-            console.error('No image selected');
-            return;
-        }
-        if (!token) {
-            console.error('No token selected');
-            return;
-        }
-        setLoading(true)
-        const formData = new FormData();
-        formData.append('image', image);
-        formData.append('userId', token);
-
-        try {
-            console.log("submit shod :))");
-
-            const response = await fetch(`${BaseUrl}images/upload`, {
-                method: 'POST',
-                body: formData,
-            });
-            console.log("wow response", response);
-
-            const data = await response.json();
-            console.log('Image uploaded successfully:', data);
-            if (data.resulte) {
-                Swal.fire({
-                    icon: "success",
-                    text: "Image uploaded successfully"
-                })
-                setImage(null)
-                getUserInfo(token)
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    text: "Image uploade error"
-                })
-            }
-
-        } catch (error) {
-            console.error('Error uploading image', error);
-        }
-        setLoading(false)
-    };
 
     const getUserInfo = async (id: string) => {
         try {
@@ -104,15 +51,6 @@ const HomePage: React.FC = () => {
 
     }
 
-
-    useEffect(() => {
-        if (image) {
-            const upImage = URL.createObjectURL(image)
-            setUploadeImage(upImage)
-        }
-
-    }, [image])
-
     useEffect(() => {
         const dataToken = getToken("bookingToken")
         if (dataToken) {
@@ -122,62 +60,13 @@ const HomePage: React.FC = () => {
             router.push("/signup")
         }
     }, [])
-    console.log(userInfo);
 
     return (
         <div className='bg-slate-100'>
-            <Breadcrumb title='Account' route='Account'/>
+            <Breadcrumb title='Account' route='Account' />
             <div className='container mx-auto px-4 md:px-0 py-12 flex flex-wrap md:flex-nowrap gap-8'>
                 <div className='bg-white border w-full lg:w-1/4 h-fit'>
-                    <div className='p-8'>
-                        <div>
-                            {loading ? (
-                                <button className='bg-prim text-white rounded p-2 text-xs  ' disabled><span className='animate-pulse'>Loading...</span></button>
-                            ) : (
-                                <>
-                                    {image ? (
-                                        <button onClick={handleUpload} className='bg-prim text-white rounded p-2 text-xs hover:bg-blue-700'>Save Photo</button>
-                                    ) : null}
-                                </>)}
-                        </div>
-                        <div className='text-center relative'>
-                            {uploadeImage ? (
-                                <Image
-                                    width={120}
-                                    height={120}
-                                    src={uploadeImage}
-                                    alt=""
-                                    className='w-32 h-32 mx-auto rounded-full'
-                                />
-                            ) : (
-                                <>
-                                    {userInfo.img?.length > 0 ? (
-                                        <Image
-                                            width={120}
-                                            height={120}
-                                            src={"/uploads/" + userInfo?.img[userInfo.img.length - 1]?.filename}
-                                            alt=""
-                                            className='w-32 h-32 mx-auto rounded-full'
-                                        />
-                                    ) : (
-                                        <Image
-                                            width={120}
-                                            height={120}
-                                            src={"/img/user.png"}
-                                            alt=""
-                                            className='w-32 mx-auto rounded-full'
-                                        />
-                                    )}
-                                </>)}
-                            <label htmlFor="avatarInput" className='text-center'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 inline border border-prim rounded-full p-1 -mt-8 -mr-8">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-                                </svg>
-                            </label>
-                            <input type="file" onChange={handleFileChange} id='avatarInput' className='sr-only' />
-                        </div>
-                    </div>
+                    <AccountAvatar userInfo={userInfo} token={token} getUserInfo={getUserInfo} />
                     <p className='text-center mb-6'>{userInfo?.username || "username"}</p>
                     <ul>
                         <li className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
@@ -215,46 +104,7 @@ const HomePage: React.FC = () => {
                     </ul>
                 </div>
                 <div className='bg-white w-full lg:w-3/4 p-8'>
-                    <div className='flex justify-between'>
-                        <h3 className='text-xl font-semibold mb-8'>Profile Setting</h3>
-                        <h3 className='text-lg text-prim font-semibold mb-8'>{userInfo?.role}</h3>
-                    </div>
-                    <div className='flex gap-4'>
-                        <div className='hidden lg:block lg:min-w-[280px]'>
-                            <p className='text-prim text-xs'>Personal Details</p>
-                        </div>
-                        <div className='px-0 lg:px-6 lg:border-l'>
-                            <h3 className='text-lg font-semibold mb-8'>Your Details</h3>
-                            <form action="" className='xl:min-w-[600px]'>
-                                <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={userInfo?.name || 'Name...'}
-                                    type="text" />
-                                <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={userInfo?.email || 'Email...'}
-                                    type="email" />
-                                <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={userInfo?.username || 'UserName...'}
-                                    type="text" />
-                                <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder={userInfo?.phone || 'Mobile Number...'}
-                                    type="number" />
-                                <textarea className='border outline-none w-full p-3 mb-3 h-32'
-                                    placeholder={userInfo?.bio || 'Bio...'} />
-                                <h3 className='text-lg font-semibold mt-8 mb-6'>Your Location</h3>
-                                <select className='border outline-none w-full p-3 mb-3 text-gray-600'
-                                    name="" id="">
-                                    <option value="-1">Australia</option>
-                                    <option value="-1">Germany</option>
-                                </select>
-                                <input className='border outline-none w-full p-3 mb-3'
-                                    placeholder='Address...'
-                                    type="text" />
-                                <div className='text-right'>
-                                    <button type="submit" className='btn'>Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <AccountForm userInfo={userInfo} token={token} getUserInfo={getUserInfo}/>
                 </div>
             </div>
         </div>
