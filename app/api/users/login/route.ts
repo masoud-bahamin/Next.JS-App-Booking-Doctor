@@ -1,5 +1,7 @@
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
+import { checkPassword } from "@/utils/hashPassword";
+import { tokenGenarator } from "@/utils/tokenGenerator";
 import loginValidator from "@/validations/serverValidatins/login";
 import { NextResponse } from "next/server";
 
@@ -11,8 +13,10 @@ export async function POST(req: Request) {
         if (validation === true) {
             const user = await userModel.findOne({ email: data.email })
             if (user) {
-                if (user.password === data.password) {
-                    return NextResponse.json({ resulte: true, user }, {
+                const isCkeckUser = await checkPassword(data.password, user.password)
+                if (isCkeckUser) {
+                    const token = tokenGenarator({ email: user.email })
+                    return NextResponse.json({ resulte: true, user , token}, {
                         status: 200,
                         headers: {
                             'Access-Control-Allow-Origin': '*',
