@@ -5,16 +5,29 @@ export function middleware(request: NextRequest) {
 
     const token = request.cookies.get("bookingToken")
 
-    if (token) {
-        if (token.value ) {
-            return NextResponse.next()
-        }
+    if (token?.value && request.nextUrl.pathname.startsWith("/account")) {
+        return NextResponse.next()
+    }
+    if (!token?.value && request.nextUrl.pathname.startsWith("/account")) {
+        return NextResponse.redirect(new URL("/login", request.url))
     }
 
-    return NextResponse.redirect(new URL("login", request.url))
+    if (token?.value && request.nextUrl.pathname.startsWith("/login")) {
+        return NextResponse.redirect(new URL("/account", request.url))
+    }
+    if (!token?.value && request.nextUrl.pathname.startsWith("/login")) {
+        return NextResponse.next()
+    }
+    if (token?.value && request.nextUrl.pathname.startsWith("/signup")) {
+        return NextResponse.redirect(new URL("/account", request.url))
+    }
+    if (!token?.value && request.nextUrl.pathname.startsWith("/signup")) {
+        return NextResponse.next()
+    }
+
 
 }
 
 export const config = {
-    matcher: ["/account"]
+    matcher: ["/account", "/login", "/signup"]
 }
