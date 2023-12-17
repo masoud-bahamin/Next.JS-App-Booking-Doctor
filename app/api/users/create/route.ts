@@ -27,7 +27,7 @@ export async function POST(req: Request) {
             const user = await userModel.create({ ...data, password: hashedPass })
             if (user) {
                 const token = tokenGenarator({ email: user.email })
-                return NextResponse.json({ resulte: true, message: "user created successfully", token}, {
+                return NextResponse.json({ resulte: true, message: "user created successfully", token }, {
                     status: 200,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
                     }
                 })
             } else {
-                return NextResponse.json({ resulte: false, message: "user not found", }, {
+                return NextResponse.json({ resulte: false, message: "error , user not found", }, {
                     status: 420,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
                 })
             }
         } else {
-            return NextResponse.json({ resulte: false, message: "user not found", error: validation }, {
+            return NextResponse.json({ resulte: false, message: "your informations not valid", error: validation }, {
                 status: 400,
                 headers: {
                     'Access-Control-Allow-Origin': '*',

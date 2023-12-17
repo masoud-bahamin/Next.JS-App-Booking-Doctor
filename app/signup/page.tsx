@@ -32,7 +32,12 @@ export default function Signup() {
           text: "your signing was successfully"
         })
         router.push("/account")
-      }
+      }else {
+        Swal.fire({
+            icon: "error",
+            text: data.message
+        })
+    }
     } catch (error) {
       console.log(error);
       Swal.fire({

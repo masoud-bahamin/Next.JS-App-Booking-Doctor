@@ -25,7 +25,7 @@ export async function POST(req: Request) {
                         }
                     })
                 } else {
-                    return NextResponse.json({ resulte: false, error: "informatin not valid" }, {
+                    return NextResponse.json({ resulte: false, message: "informatin not valid" }, {
                         status: 400,
                         headers: {
                             'Access-Control-Allow-Origin': '*',
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
                     })
                 }
             } else {
-                return NextResponse.json({ resulte: false, error: "user not found" }, {
+                return NextResponse.json({ resulte: false, message: "user not found" }, {
                     status: 420,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
                 })
             }
         } else {
-            return NextResponse.json({ resulte: false, error: validation }, {
+            return NextResponse.json({ resulte: false, error: validation , message : "your information is not valid"}, {
                 status: 500,
                 headers: {
                     'Access-Control-Allow-Origin': '*',

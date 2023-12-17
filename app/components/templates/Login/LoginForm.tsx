@@ -30,6 +30,11 @@ export default function LoginForm() {
                     text: "your signing was successfully"
                 })
                 router.push("/account")
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    text: data.message
+                })
             }
         } catch (error) {
             console.log(error);
@@ -43,7 +48,7 @@ export default function LoginForm() {
         setLoading(false)
 
     }
-    
+
     return (
         <div className='p-6 border rounded-md'>
             <h3 className='text-xl font-medium mb-6'>Doctor/Patient Login</h3>

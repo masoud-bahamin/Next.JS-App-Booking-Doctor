@@ -43,7 +43,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
                 })
             }
         } else {
-            return NextResponse.json({ resulte: false, message: "user not found", error: validation }, {
+            return NextResponse.json({ resulte: false, message: "your information is not valid", error: validation }, {
                 status: 500,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -55,7 +55,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
 
 
     } catch (error) {
-        return NextResponse.json({ resulte: false, message: "catch error", error }, {
+        return NextResponse.json({ resulte: false, message: "server  error", error }, {
             status: 530,
             headers: {
                 'Access-Control-Allow-Origin': '*',
