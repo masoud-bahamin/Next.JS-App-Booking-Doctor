@@ -16,7 +16,7 @@ export async function POST(req: Request) {
                 const isCkeckUser = await checkPassword(data.password, user.password)
                 if (isCkeckUser) {
                     const token = tokenGenarator({ email: user.email })
-                    return NextResponse.json({ resulte: true, user , token}, {
+                    return NextResponse.json({ resulte: true , token}, {
                         status: 200,
                         headers: {
                             'Access-Control-Allow-Origin': '*',

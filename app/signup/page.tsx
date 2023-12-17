@@ -26,7 +26,7 @@ export default function Signup() {
       const data = await res.json()
       console.log(data);
       if (data.resulte) {
-        document.cookie = `bookingToken=${data.user._id}; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/` ;
+        document.cookie = `bookingToken=${data.token}; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/` ;
         Swal.fire({
           icon: "success",
           text: "your signing was successfully"
