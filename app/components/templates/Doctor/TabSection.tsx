@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Overview from './Overview'
 import Comment from '../../modules/Comment/Comment'
 import Appointment from './Appointment'
-import { User } from '@/app/account/page'
+import { UpdateUser } from '@/app/account/page'
 
 export type CommentType = {
     comments: [{
@@ -14,7 +14,7 @@ export type CommentType = {
     }]
 }
 
-type TabSectionProps = { user: User & CommentType }
+type TabSectionProps = { user: UpdateUser & CommentType }
 
 export default function TabSection({ user }: TabSectionProps) {
     const [tab, setTab] = useState("appointment")
