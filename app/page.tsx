@@ -4,6 +4,7 @@ import Hero from "./components/templates/Home/Hero";
 import Specialities from "./components/templates/Home/Specialities";
 import connectToDb from "@/utils/db";
 import BaseUrl from "@/utils/baseUrl";
+import { NextRequest } from "next/server";
 
 export interface Doctor {
   username: string;

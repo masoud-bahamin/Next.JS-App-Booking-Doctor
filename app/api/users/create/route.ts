@@ -4,6 +4,7 @@ import { hashPassword } from "@/utils/hashPassword";
 import { tokenGenarator } from "@/utils/tokenGenerator";
 import userValidator from "@/validations/serverValidatins/userValidation";
 import { NextResponse } from "next/server";
+const cookie = require("cookie")
 
 export async function POST(req: Request) {
 
@@ -27,12 +28,24 @@ export async function POST(req: Request) {
             const user = await userModel.create({ ...data, password: hashedPass })
             if (user) {
                 const token = tokenGenarator({ email: user.email })
-                return NextResponse.json({ resulte: true, message: "user created successfully", token }, {
+
+                var setCookie = cookie.serialize("token", token, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production",
+                    sameSite: "strict",
+                    maxAge: 60 * 60 * 24,
+                    path: "/",
+                  });
+
+                
+
+                return NextResponse.json({ resulte: true, message: "user created successfully" }, {
                     status: 200,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                        "Set-Cookie" : setCookie
                     }
                 })
             } else {

@@ -6,7 +6,7 @@ import { Field, Form, Formik } from 'formik'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb'
 
@@ -19,14 +19,14 @@ export default function Signup() {
   const signupUser = async ({ email, username, password }: { email: string, username: string, password: string }) => {
     setLoading(true)
     try {
-      const res = await fetch(`${BaseUrl}users/create`, {
+      // const res = await fetch(`${BaseUrl}users/create`, {
+      const res = await fetch(`http://localhost:3000/api/users/create`, {
         method: "POST",
         body: JSON.stringify({ email, username, password , role})
       })
       const data = await res.json()
       console.log(data);
       if (data.resulte) {
-        document.cookie = `bookingToken=${data.token}; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/` ;
         Swal.fire({
           icon: "success",
           text: "your signing was successfully"

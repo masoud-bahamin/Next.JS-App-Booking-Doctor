@@ -8,10 +8,21 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
 
     try {
         connectToDb()
-        const { id } = context.params
-        const token = exportToken(id) as { email: string }
-        if (token) {
-            const user = await userModel.findOne({ email: token.email }, "-__v").populate("img").populate("comments").lean()
+        const cookie = req.cookies.get("token")
+        if (!cookie?.value) {
+            return NextResponse.json({ resulte: false, message: "token not found", }, {
+                status: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                }
+            }) 
+        }
+        const {email} = exportToken(cookie?.value) as {email : string}
+
+        if (email) {
+            const user = await userModel.findOne({ email }, "-__v").populate("img").populate("comments").lean()
             if (user) {
                 return NextResponse.json({ resulte: true, message: "user created successfully", user }, {
                     status: 200,

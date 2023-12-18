@@ -27,16 +27,12 @@ const HomePage: React.FC = () => {
     const [token, setToken] = useState<string | null>(null)
     const router = useRouter()
 
-    const getToken = (name: string) => {
-        const value = `; ${document.cookie}`
-        const parts = value.split(`; ${name}=`)
-        if (parts.length === 2) return parts.pop()?.split(";").shift()
-    }
 
 
     const getUserInfo = async (id: string) => {
         try {
-            const res = await fetch(`${BaseUrl}users/getUser/${id}`)
+            // const res = await fetch(`${BaseUrl}users/getUser/${id}`)
+            const res = await fetch(`http://localhost:3000/api/users/getUser/${id}`)
             const data = await res.json()
 
             if (data.resulte) {
@@ -52,13 +48,7 @@ const HomePage: React.FC = () => {
     }
 
     useEffect(() => {
-        const dataToken = getToken("bookingToken")
-        if (dataToken) {
-            setToken(dataToken)
-            getUserInfo(dataToken)
-        } else {
-            router.push("/signup")
-        }
+            getUserInfo("abc")     
     }, [])
 
     return (

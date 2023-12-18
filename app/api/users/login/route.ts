@@ -4,6 +4,7 @@ import { checkPassword } from "@/utils/hashPassword";
 import { tokenGenarator } from "@/utils/tokenGenerator";
 import loginValidator from "@/validations/serverValidatins/login";
 import { NextResponse } from "next/server";
+import cookie from "cookie"
 
 export async function POST(req: Request) {
     try {
@@ -16,9 +17,17 @@ export async function POST(req: Request) {
                 const isCkeckUser = await checkPassword(data.password, user.password)
                 if (isCkeckUser) {
                     const token = tokenGenarator({ email: user.email })
-                    return NextResponse.json({ resulte: true , token}, {
+                    const setCookie = cookie.serialize("token" , token , {
+                        httpOnly : true ,
+                        path : "/",
+                        maxAge : 60 * 60 * 24,
+                        secure : false ,
+                        sameSite : "strict"
+                    })
+                    return NextResponse.json({ resulte: true , message : "login successfully"}, {
                         status: 200,
                         headers: {
+                            "Set-Cookie" : setCookie ,
                             'Access-Control-Allow-Origin': '*',
                             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                             'Access-Control-Allow-Headers': 'Content-Type, Authorization',

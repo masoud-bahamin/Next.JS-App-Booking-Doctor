@@ -3,25 +3,25 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
 
-    const token = request.cookies.get("bookingToken")
-
-    if (token?.value && request.nextUrl.pathname.startsWith("/account")) {
+    const token = request.headers.get("cookie")
+    
+    if (token && request.nextUrl.pathname.startsWith("/account")) {
         return NextResponse.next()
     }
-    if (!token?.value && request.nextUrl.pathname.startsWith("/account")) {
+    if (!token && request.nextUrl.pathname.startsWith("/account")) {
         return NextResponse.redirect(new URL("/login", request.url))
     }
 
-    if (token?.value && request.nextUrl.pathname.startsWith("/login")) {
+    if (token && request.nextUrl.pathname.startsWith("/login")) {
         return NextResponse.redirect(new URL("/account", request.url))
     }
-    if (!token?.value && request.nextUrl.pathname.startsWith("/login")) {
+    if (!token && request.nextUrl.pathname.startsWith("/login")) {
         return NextResponse.next()
     }
-    if (token?.value && request.nextUrl.pathname.startsWith("/signup")) {
+    if (token && request.nextUrl.pathname.startsWith("/signup")) {
         return NextResponse.redirect(new URL("/account", request.url))
     }
-    if (!token?.value && request.nextUrl.pathname.startsWith("/signup")) {
+    if (!token && request.nextUrl.pathname.startsWith("/signup")) {
         return NextResponse.next()
     }
 
