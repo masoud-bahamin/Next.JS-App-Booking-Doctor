@@ -17,8 +17,7 @@ export default function LoginForm() {
     const signupUser = async ({ email, password }: { email: string, password: string }) => {
         setLoading(true)
         try {
-            // const res = await fetch(`${BaseUrl}users/login`, {
-            const res = await fetch(`http://localhost:3000/api/users/login`, {
+            const res = await fetch(`${BaseUrl}users/login`, {
                 method: "POST",
                 body: JSON.stringify({ email, password })
             })

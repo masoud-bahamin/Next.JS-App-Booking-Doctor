@@ -19,8 +19,7 @@ export default function Signup() {
   const signupUser = async ({ email, username, password }: { email: string, username: string, password: string }) => {
     setLoading(true)
     try {
-      // const res = await fetch(`${BaseUrl}users/create`, {
-      const res = await fetch(`http://localhost:3000/api/users/create`, {
+      const res = await fetch(`${BaseUrl}users/create`, {
         method: "POST",
         body: JSON.stringify({ email, username, password , role})
       })
