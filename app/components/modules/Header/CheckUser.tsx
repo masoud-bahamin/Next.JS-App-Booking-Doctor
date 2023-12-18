@@ -1,45 +1,12 @@
 "use client"
 
-import { User } from '@/app/account/page'
-import BaseUrl from '@/utils/baseUrl'
+import {authContext} from '@/app/context/authContext'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 
 export default function CheckUser() {
 
-    const [userInfo, setUserInfo] = useState<User | null>(null)
-    const [loading, setLoading] = useState(false)
-
-    const getUserInfo = async (id: string) => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BaseUrl}users/getUser/${id}`)
-            const data = await res.json()
-
-            if (data.resulte) {
-                setUserInfo(data.user)
-
-            }
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false)
-
-    }
-
-    const getToken = (name: string) => {
-        const value = `; ${document.cookie}`
-        const parts = value.split(`; ${name}=`)
-        if (parts.length === 2) return parts.pop()?.split(";").shift()
-    }
-
-    useEffect(() => {
-        const token = getToken("bookingToken")
-        if (token) {
-            getUserInfo(token)
-        }
-
-    }, [])
+    const {userInfo , loading} = useContext(authContext)
 
     return (
         <div>
@@ -48,7 +15,7 @@ export default function CheckUser() {
             ) : (
                 <>
                     {userInfo ? (
-                        <Link href={"/account"} className='btn-b text-sm'>Account</Link>
+                        <Link href={"/account"} className='btn-b text-sm'>{userInfo.username}</Link>
                     ) : (
                         <Link href={"/login"} className='btn-b text-sm'>LOGIN <span className='hidden sm:inline-block'>/ SIGNUP</span></Link>
                     )}

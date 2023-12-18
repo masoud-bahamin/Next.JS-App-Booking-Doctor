@@ -1,13 +1,14 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb';
 import BaseUrl from '@/utils/baseUrl';
 import AccountForm from '../components/templates/Account/AccountForm';
 import AccountAvatar from '../components/templates/Account/AccountAvatar';
+import { authContext } from '../context/authContext';
 
-export interface User {
+export interface UpdateUser {
     username: string,
     email: string,
     password: string,
@@ -17,45 +18,21 @@ export interface User {
     age: number,
     bio: string,
     name: string,
-    phone: string
+    phone: string,
+    _id : string
 }
 
 
 const HomePage: React.FC = () => {
 
-    const [userInfo, setUserInfo] = useState<User>({} as User);
-    const [token, setToken] = useState<string | null>(null)
-    const router = useRouter()
-
-
-
-    const getUserInfo = async (id: string) => {
-        try {
-            const res = await fetch(`${BaseUrl}users/getUser/${id}`)
-            const data = await res.json()
-
-            if (data.resulte) {
-                setUserInfo(data.user)
-            } else {
-
-            }
-        } catch (error) {
-            console.log(error);
-
-        }
-
-    }
-
-    useEffect(() => {
-            getUserInfo("abc")     
-    }, [])
+    const {logout , userInfo } = useContext(authContext) as{logout : ()=> void , userInfo : UpdateUser}
 
     return (
         <div className='bg-slate-100'>
             <Breadcrumb title='Account' route='Account' />
             <div className='container mx-auto px-4 md:px-0 py-12 flex flex-wrap md:flex-nowrap gap-8'>
                 <div className='bg-white border w-full lg:w-1/4 h-fit'>
-                    <AccountAvatar userInfo={userInfo} token={token} getUserInfo={getUserInfo} />
+                    <AccountAvatar userInfo={userInfo} />
                     <p className='text-center mb-6'>{userInfo?.username || "username"}</p>
                     <ul>
                         <li className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
@@ -83,7 +60,8 @@ const HomePage: React.FC = () => {
                             </svg>
                             <span>Profile Setting</span>
                         </li>
-                        <li className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
+                        <li onClick={() => logout()}
+                        className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                             </svg>
@@ -93,7 +71,7 @@ const HomePage: React.FC = () => {
                     </ul>
                 </div>
                 <div className='bg-white w-full lg:w-3/4 p-8'>
-                    <AccountForm userInfo={userInfo} token={token} getUserInfo={getUserInfo}/>
+                    <AccountForm userInfo={userInfo} token={userInfo?._id} />
                 </div>
             </div>
         </div>

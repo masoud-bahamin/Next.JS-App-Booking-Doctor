@@ -6,49 +6,16 @@ import { Field, Form, Formik } from 'formik'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb'
+import { authContext } from '../context/authContext'
 
 export default function Signup() {
 
-  const [loading, setLoading] = useState<boolean>(false)
-  const [role, setRole] = useState("USER")
-  const router = useRouter()
+  const [role, setRole] = useState<"USER" | "DOCTOR">("USER")
 
-  const signupUser = async ({ email, username, password }: { email: string, username: string, password: string }) => {
-    setLoading(true)
-    try {
-      const res = await fetch(`${BaseUrl}users/create`, {
-        method: "POST",
-        body: JSON.stringify({ email, username, password , role})
-      })
-      const data = await res.json()
-      console.log(data);
-      if (data.resulte) {
-        Swal.fire({
-          icon: "success",
-          text: "your signing was successfully"
-        })
-        router.push("/account")
-      }else {
-        Swal.fire({
-            icon: "error",
-            text: data.message
-        })
-    }
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        text: "your signing was NOT successfully"
-      })
-      router.refresh()
-    }
-
-    setLoading(false)
-
-  }
+  const {register , loading} = useContext(authContext)
 
   return (
     <div className=''>
@@ -66,7 +33,7 @@ export default function Signup() {
             <Formik
               onSubmit={values => {
                 if (!loading) {
-                  signupUser(values)
+                  register({ email:values.email, username : values.username, password : values.password , role })
                 }
               }}
               initialValues={{ email: "", username: "", password: "", repassword: "" }}

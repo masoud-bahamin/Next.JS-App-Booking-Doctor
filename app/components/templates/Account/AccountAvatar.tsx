@@ -1,18 +1,16 @@
 "use client"
 
-import { User } from '@/app/account/page'
+import { UpdateUser } from '@/app/account/page'
 import BaseUrl from '@/utils/baseUrl'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 
 interface AccountAvatarProps{
-    userInfo : User,
-    token : string | null,
-    getUserInfo : (p : string) => void
+    userInfo : UpdateUser ,
 }
 
-export default function AccountAvatar({userInfo , token , getUserInfo} : AccountAvatarProps) {
+export default function AccountAvatar({userInfo } : AccountAvatarProps) {
 
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState<File | null>(null);
@@ -28,14 +26,11 @@ export default function AccountAvatar({userInfo , token , getUserInfo} : Account
             console.error('No image selected');
             return;
         }
-        if (!token) {
-            console.error('No token selected');
-            return;
-        }
+
         setLoading(true)
         const formData = new FormData();
         formData.append('image', image);
-        formData.append('userId', token);
+        formData.append('userId', userInfo._id);
 
         try {
             console.log("submit shod :))");
@@ -54,7 +49,7 @@ export default function AccountAvatar({userInfo , token , getUserInfo} : Account
                     text: "Image uploaded successfully"
                 })
                 setImage(null)
-                getUserInfo(token)
+                // getUserInfo(token)
             } else {
                 Swal.fire({
                     icon: "error",
@@ -99,7 +94,7 @@ export default function AccountAvatar({userInfo , token , getUserInfo} : Account
                     />
                 ) : (
                     <>
-                        {userInfo.img?.length > 0 ? (
+                        {userInfo?.img?.length > 0 ? (
                             <Image
                                 width={140}
                                 height={140}

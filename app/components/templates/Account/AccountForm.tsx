@@ -1,6 +1,6 @@
 "use client"
 
-import { User } from '@/app/account/page'
+import { UpdateUser } from '@/app/account/page'
 import BaseUrl from '@/utils/baseUrl'
 import updateScema from '@/validations/clientValidations/accounForm'
 import { Field, Form, Formik } from 'formik'
@@ -8,13 +8,12 @@ import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 
 interface AccountFormProps {
-    userInfo: User,
+    userInfo: UpdateUser,
     token: string | null;
-    getUserInfo: (p: string) => void
 }
 
 
-export default function AccountForm({ userInfo, token, getUserInfo }: AccountFormProps) {
+export default function AccountForm({ userInfo, token }: AccountFormProps) {
 
     const [loading, setLoading] = useState(false)
 
@@ -34,7 +33,7 @@ export default function AccountForm({ userInfo, token, getUserInfo }: AccountFor
                     text: "update successfully"
                 })
             }
-            getUserInfo(token)
+            // getUserInfo(token)
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -67,11 +66,11 @@ export default function AccountForm({ userInfo, token, getUserInfo }: AccountFor
                         initialValues={{
                             name: "",
                             phone: "",
-                            age: userInfo.age || 18,
+                            age: userInfo?.age || 18,
                             bio: "",
                             location: "",
-                            email: userInfo.email,
-                            username: userInfo.username,
+                            email: userInfo?.email,
+                            username: userInfo?.username,
                         }}
                         validationSchema={updateScema}
                     >

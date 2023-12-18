@@ -1,52 +1,18 @@
 "use client"
 
 
+import { authContext } from '@/app/context/authContext'
 import BaseUrl from '@/utils/baseUrl'
 import loginValidations from '@/validations/clientValidations/login'
 import { Field, Form, Formik } from 'formik'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Swal from 'sweetalert2'
 
 export default function LoginForm() {
 
-    const [loading, setLoading] = useState<boolean>(false)
-    const router = useRouter()
-
-    const signupUser = async ({ email, password }: { email: string, password: string }) => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BaseUrl}users/login`, {
-                method: "POST",
-                body: JSON.stringify({ email, password })
-            })
-            const data = await res.json()
-            console.log(data);
-            if (data.resulte) {
-                Swal.fire({
-                    icon: "success",
-                    text: "your signing was successfully"
-                })
-                router.push("/account")
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    text: data.message
-                })
-            }
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                text: "your signing was NOT successfully"
-            })
-            router.refresh()
-        }
-
-        setLoading(false)
-
-    }
+    const { login, loading } = useContext(authContext)
 
     return (
         <div className='p-6 border rounded-md'>
@@ -54,7 +20,7 @@ export default function LoginForm() {
             <Formik
                 onSubmit={values => {
                     if (!loading) {
-                        signupUser(values)
+                        login(values)
                     }
                 }}
                 initialValues={{ email: "", password: "" }}
