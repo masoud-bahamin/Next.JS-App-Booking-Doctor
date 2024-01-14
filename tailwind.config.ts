@@ -12,6 +12,10 @@ const config: Config = {
         "prim": "#0e82fd",
         "second": "#15558d",
         "third": "#15558d"
+      },
+      fontFamily : {
+        "Barlow" : "Barlow",
+        "Work_Sans":"Work_Sans"
       }
     },
   },

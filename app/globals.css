@@ -2,6 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Barlow";
+    src: url('../public/fonts/Barlow/Barlow-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Barlow";
+    src: url('../public/fonts/Barlow/Barlow-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Barlow";
+    src: url('../public/fonts/Barlow/Barlow-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Barlow";
+    src: url('../public/fonts/Barlow/Barlow-SemiBold.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Barlow";
+    src: url('../public/fonts/Barlow/Barlow-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: "Work_Sans";
+    src: url('../public/fonts/Work_Sans/WorkSans-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Work_Sans";
+    src: url('../public/fonts/Work_Sans/WorkSans-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Work_Sans";
+    src: url('../public/fonts/Work_Sans/WorkSans-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Work_Sans";
+    src: url('../public/fonts/Work_Sans/WorkSans-SemiBold.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Work_Sans";
+    src: url('../public/fonts/Work_Sans/WorkSans-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
 
 @layer components {
     .btn {
