@@ -34,10 +34,10 @@ export default async function Home() {
 
   return (
     <div>
-      {/* <Hero doctors={doctors.users} /> */}
+      <Hero doctors={doctors.users} />
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
-      {/* <BestDoctors doctors={doctors.users} /> */}
+      <BestDoctors doctors={doctors.users} />
     </div>
   )
 }
