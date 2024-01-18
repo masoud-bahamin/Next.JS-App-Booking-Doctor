@@ -7,10 +7,10 @@ export default function DoctorCard({ username, email, img , _id}: Doctor) {
     return (
         <div className='w-64 mx-auto'>
             <div>
-                {img && <Image
+                {img && <img
                     width={500}
                     height={500}
-                    src={`/uploads/${img[img.length - 1]?.filename}`}
+                    src={`${img[img.length - 1]?.filename}`}
                     alt="" 
                     className='w-64 h-64' 
                     />}

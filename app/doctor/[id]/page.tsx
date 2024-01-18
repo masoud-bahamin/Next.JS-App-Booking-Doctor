@@ -1,22 +1,16 @@
 import Breadcrumb from '@/app/components/modules/Breadcrumb/Breadcrumb'
 import Rating from '@/app/components/modules/Comment/Rating'
 import TabSection from '@/app/components/templates/Doctor/TabSection'
+import imageModel from '@/models/image'
+import userModel from '@/models/user'
+import BaseUrl from '@/utils/baseUrl'
+import connectToDb from '@/utils/db'
 import Image from 'next/image'
-import React from 'react'
-
-const getDoctorData = async (id: string) => {
-    const res = await fetch(`https://bahamin-booking.vercel.app/api/users/getUser/${id}`,{
-        next : {
-            revalidate : 3
-        }
-    })
-
-    return res.json()
-}
 
 export default async function page({ params }: { params: { id: string } }) {
-
-    const {user} = await getDoctorData(params.id)
+    connectToDb()
+    const user = await userModel.findOne({_id :params.id})
+    const images = await imageModel.find({userId :params.id})
 
     return (
         <div className=''>
@@ -25,7 +19,7 @@ export default async function page({ params }: { params: { id: string } }) {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-20 justify-between mb-10'>
                     <div className='flex gap-4'>
                         <div>
-                            <Image width={200} height={200} alt='' src={`/uploads/${user.img?.reverse()?.[0].filename}` || "/img/d1.jpg"} className='rounded-md' />
+                            <img width={200} height={200} alt='' src={images[0]?.filename} className='rounded-md w-40 h-40' />
                         </div>
                         <div>
                             <p className='font-medium mb-2'>{user?.username}</p>
@@ -63,7 +57,7 @@ export default async function page({ params }: { params: { id: string } }) {
                         <a className='btn inline-block text-center w-full mb-3 text-xs' href="#appointment">BOOK APPOINTMENT</a>
                     </div>
                 </div>
-                <TabSection user={user} />
+                {/* <TabSection user={ user} /> */}
             </div>
         </div>
     )

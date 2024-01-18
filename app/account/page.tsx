@@ -7,6 +7,7 @@ import { cookies } from 'next/headers'
 import { exportToken } from '@/utils/tokenGenerator';
 import userModel from '@/models/user';
 import { redirect } from 'next/navigation';
+import connectToDb from '@/utils/db';
 export interface UpdateUser {
     username: string,
     email: string,
@@ -30,7 +31,7 @@ const HomePage = async () => {
     if (!token)  redirect("/signup")
 
     const { email } = exportToken(token) as { email: string }
-
+    connectToDb()
     const user = await userModel.findOne({ email }, "-__v")
 
     return (

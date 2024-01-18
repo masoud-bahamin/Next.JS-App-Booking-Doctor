@@ -18,7 +18,7 @@ const getData = async () => {
   try {
     const res = await fetch(`https://bahamin-booking.vercel.app/api/users/doctors`, {
       next: {
-        revalidate: 3
+        revalidate: 1
       }
     })
     return res.json()
@@ -29,16 +29,15 @@ const getData = async () => {
 }
 
 export default async function Home() {
-  // connectToDb()
-  // const doctors : Doctor[] = await doctorModel.find({})
+  
   let doctors: { users: Doctor[] } = await getData()
 
   return (
     <div>
-      <Hero doctors={doctors.users} />
+      {/* <Hero doctors={doctors.users} /> */}
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
-      <BestDoctors doctors={doctors.users} />
+      {/* <BestDoctors doctors={doctors.users} /> */}
     </div>
   )
 }

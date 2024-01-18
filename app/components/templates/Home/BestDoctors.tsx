@@ -1,9 +1,6 @@
 import React from 'react'
 import DoctorCard from '../../modules/Card/DoctorCard'
-import doctorModel from '@/models/doctor'
 import { Doctor } from '@/app/page'
-
-
 
 export default async function BestDoctors({ doctors }: { doctors: Doctor[] }) {
     return (
