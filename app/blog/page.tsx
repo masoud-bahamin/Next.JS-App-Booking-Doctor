@@ -34,7 +34,7 @@ function Blog() {
             <div className='container mx-auto flex gap-10'>
                 <div className='w-2/3  pt-20'>
                     <div className='grid grid-cols-2 gap-10'>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/01.jpg" alt="" />
                             </div>
@@ -58,7 +58,7 @@ function Blog() {
                                 </svg>
                             </button>
                         </div>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/04.jpg" alt="" />
                             </div>
@@ -82,7 +82,7 @@ function Blog() {
                                 </svg>
                             </button>
                         </div>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/01.jpg" alt="" />
                             </div>
@@ -106,7 +106,7 @@ function Blog() {
                                 </svg>
                             </button>
                         </div>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/01.jpg" alt="" />
                             </div>
@@ -130,7 +130,7 @@ function Blog() {
                                 </svg>
                             </button>
                         </div>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/04.jpg" alt="" />
                             </div>
@@ -154,7 +154,7 @@ function Blog() {
                                 </svg>
                             </button>
                         </div>
-                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer h-fit'>
+                        <div className=' hover:-translate-y-2 duration-500 cursor-pointer'>
                             <div className='mb-6'>
                                 <img src="https://htmlguru.net/genial/assets/img/posts/01.jpg" alt="" />
                             </div>

@@ -1,10 +1,11 @@
 "use client"
 
 import { UpdateUser } from '@/app/account/page'
+import { authContext } from '@/app/context/authContext'
 import BaseUrl from '@/utils/baseUrl'
 import updateScema from '@/validations/clientValidations/accounForm'
 import { Field, Form, Formik } from 'formik'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Swal from 'sweetalert2'
 
 interface AccountFormProps {
@@ -13,15 +14,17 @@ interface AccountFormProps {
 }
 
 
-export default function AccountForm({ userInfo, token }: AccountFormProps) {
+export default function AccountForm() {
 
     const [loading, setLoading] = useState(false)
 
+    const {  userInfo } = useContext(authContext) as { logout: () => void, userInfo: UpdateUser }
+
     const updateUser = async (user: {}) => {
-        if (token === null) return false
+        if (userInfo === null) return false
         setLoading(true)
         try {
-            const res = await fetch(`${BaseUrl}users/update/${token}`, {
+            const res = await fetch(`${BaseUrl}users/update/${userInfo._id}`, {
                 method: "PUT",
                 body: JSON.stringify(user)
             })
@@ -47,7 +50,7 @@ export default function AccountForm({ userInfo, token }: AccountFormProps) {
     }
 
     return (
-        <>
+        <div className=' font-Barlow'>
             <div className='flex justify-between'>
                 <h3 className='text-xl font-semibold mb-8'>Profile Setting</h3>
                 <h3 className='text-lg text-prim font-semibold mb-8'>{userInfo?.role}</h3>
@@ -57,7 +60,7 @@ export default function AccountForm({ userInfo, token }: AccountFormProps) {
                     <p className='text-prim text-xs'>Personal Details</p>
                 </div>
                 <div className='px-0 lg:px-6 lg:border-l'>
-                    <h3 className='text-lg font-semibold mb-8'>Your Details</h3>
+                    <h3 className='text-lg font-medium mb-8'>Your Details</h3>
                     <Formik
                         onSubmit={(infos , {resetForm}) => {
                             updateUser(infos)
@@ -99,7 +102,7 @@ export default function AccountForm({ userInfo, token }: AccountFormProps) {
                                 {errors.bio && touched.bio ? <p className='text-xs py-2 text-rose-400'>{errors.bio}</p> : null}
                                 <Field name="bio" className='border outline-none w-full p-3 mb-3 text-gray-500 pb-12 flex'
                                     placeholder={userInfo?.bio || 'Bio...'} />
-                                <h3 className='text-lg font-semibold mt-8 mb-6'>Your Location</h3>
+                                <h3 className='text-lg font-medium mt-8 mb-6'>Your Location</h3>
                                 <select className='border outline-none w-full p-3 mb-3 text-gray-500 '
                                     name="" id="">
                                     <option value="australia">Australia</option>
@@ -122,6 +125,6 @@ export default function AccountForm({ userInfo, token }: AccountFormProps) {
                     </Formik>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

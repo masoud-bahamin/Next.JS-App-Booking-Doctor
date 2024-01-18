@@ -8,6 +8,8 @@ const imageSchema = new mongoose.Schema({
     ref: "User",
   },
 
+},{
+  timestamps : true
 });
 
 const imageModel = mongoose.models.Image || mongoose.model('Image', imageSchema);

@@ -16,7 +16,7 @@ export default function Navbar({ setIsShow, isShow }: NavbarProps) {
                 <li className='hover:text-prim transition-all duration-500'><Link href={"/"}>About</Link></li>
                 <li className='hover:text-prim transition-all duration-500'><Link href={"/"}>Specialities</Link></li>
                 <li className='hover:text-prim transition-all duration-500'><Link href={"/"}>Doctors</Link></li>
-                <li className='hover:text-prim transition-all duration-500'><Link href={"/"}>Blog</Link></li>
+                <li className='hover:text-prim transition-all duration-500'><Link href={"/blog"}>Blog</Link></li>
                 <li className='hover:text-prim transition-all duration-500'><Link href={"/"}>Contact Us</Link></li>
             </ul>
             <button onClick={() => { setIsShow(false) }}

@@ -65,6 +65,10 @@
     font-style: normal;
 }
 
+html,body,p,div{
+    font-family: "Work_Sans" ,Arial, Helvetica, sans-serif
+}
+
 
 @layer components {
     .btn {

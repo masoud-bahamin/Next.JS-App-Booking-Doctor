@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} overflow-x-hidden`}>
+      <body className={` font-Work_Sans overflow-x-hidden`}>
         <AuthProvider>
           <Header />
           {children}

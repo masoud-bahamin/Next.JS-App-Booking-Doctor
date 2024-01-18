@@ -144,7 +144,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const getUserInfo = async () => {
         setLoading(true)
         try {
-            const res = await fetch(`${BaseUrl}users/getUser/123`)
+            const res = await fetch(`${BaseUrl}users/getUser`)
             const data = await res.json()
             if (data.resulte) {
                 setUserInfo(data.user)

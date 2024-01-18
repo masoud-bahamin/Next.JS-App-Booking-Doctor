@@ -1,13 +1,12 @@
-"use client"
-
-import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Breadcrumb from '../components/modules/Breadcrumb/Breadcrumb';
-import BaseUrl from '@/utils/baseUrl';
 import AccountForm from '../components/templates/Account/AccountForm';
-import AccountAvatar from '../components/templates/Account/AccountAvatar';
-import { authContext } from '../context/authContext';
-
+import UploadImage from '../components/modules/UplaodImage/UplaodImage';
+import AllImages from '../components/templates/Account/AllImages';
+import Logout from '../components/templates/Account/Logout';
+import { cookies } from 'next/headers'
+import { exportToken } from '@/utils/tokenGenerator';
+import userModel from '@/models/user';
+import { redirect } from 'next/navigation';
 export interface UpdateUser {
     username: string,
     email: string,
@@ -19,21 +18,27 @@ export interface UpdateUser {
     bio: string,
     name: string,
     phone: string,
-    _id : string
+    _id: string
 }
 
 
-const HomePage: React.FC = () => {
+const HomePage = async () => {
 
-    const {logout , userInfo } = useContext(authContext) as{logout : ()=> void , userInfo : UpdateUser}
+    const cookieStore = cookies()
+    const token = cookieStore.get('token')?.value
+
+    if (!token)  redirect("/signup")
+
+    const { email } = exportToken(token) as { email: string }
+
+    const user = await userModel.findOne({ email }, "-__v")
 
     return (
         <div className='bg-slate-100'>
             <Breadcrumb title='Account' route='Account' />
             <div className='container mx-auto px-4 md:px-0 py-12 flex flex-wrap md:flex-nowrap gap-8'>
                 <div className='bg-white border w-full lg:w-1/4 h-fit'>
-                    <AccountAvatar userInfo={userInfo} />
-                    <p className='text-center mb-6'>{userInfo?.username || "username"}</p>
+                    <UploadImage />
                     <ul>
                         <li className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -60,18 +65,18 @@ const HomePage: React.FC = () => {
                             </svg>
                             <span>Profile Setting</span>
                         </li>
-                        <li onClick={() => logout()}
-                        className='p-3 border-b text-gray-500 cursor-pointer text-sm flex gap-3 items-center hover:text-prim transition-all duration-200'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                            </svg>
-                            <span>Logout</span>
-                        </li>
+                        <Logout />
 
                     </ul>
                 </div>
                 <div className='bg-white w-full lg:w-3/4 p-8'>
-                    <AccountForm userInfo={userInfo} token={userInfo?._id} />
+                    <AccountForm />
+                    {user.role === "ADMIN" ? (
+                        <div className='p-8 my-12'>
+                            <AllImages />
+                        </div>
+                    ) : null}
+
                 </div>
             </div>
         </div>
