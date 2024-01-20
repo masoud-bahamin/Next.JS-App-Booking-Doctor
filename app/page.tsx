@@ -16,7 +16,7 @@ export interface Doctor {
 
 const getData = async () => {
   try {
-    const res = await fetch(`https://bahamin-booking.vercel.app/api/users/doctors`, {
+    const res = await fetch(`${BaseUrl}users/doctors`, {
       next: {
         revalidate: 1
       }

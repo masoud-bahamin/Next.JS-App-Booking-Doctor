@@ -11,7 +11,7 @@ export default async function page({ params }: { params: { id: string } }) {
     connectToDb()
     const user = await userModel.findOne({_id :params.id})
     const images = await imageModel.find({userId :params.id})
-
+ 
     return (
         <div className=''>
             <Breadcrumb title='Doctor' route='Doctor' />
@@ -19,7 +19,7 @@ export default async function page({ params }: { params: { id: string } }) {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-20 justify-between mb-10'>
                     <div className='flex gap-4'>
                         <div>
-                            <img width={200} height={200} alt='' src={images[0]?.filename} className='rounded-md w-40 h-40' />
+                            <Image width={200} height={200} alt='' src={`/img/${images[0]?.filename}`} className='rounded-md' />
                         </div>
                         <div>
                             <p className='font-medium mb-2'>{user?.username}</p>
@@ -57,7 +57,7 @@ export default async function page({ params }: { params: { id: string } }) {
                         <a className='btn inline-block text-center w-full mb-3 text-xs' href="#appointment">BOOK APPOINTMENT</a>
                     </div>
                 </div>
-                {/* <TabSection user={ user} /> */}
+                <TabSection user={JSON.parse(JSON.stringify(user)) } />
             </div>
         </div>
     )

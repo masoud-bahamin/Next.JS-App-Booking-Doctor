@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { Doctor } from '@/app/page'
 
 export default function Hero({ doctors }: { doctors: Doctor[] }) {
-    console.log(doctors);
     
     return (
         <div className='bg-slate-100'>
@@ -46,10 +45,10 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
                             <div className='flex'>
                                 {doctors.map(i => (
                                     < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>
-                                        <Image 
+                                        <img 
                                         width={40} height={40} 
-                                        src={i.img?.length ? `/uploads/${i.img?.reverse()[0]?.filename}` : `/img/d1.jpg`} 
-                                        alt="" className='rounded-full border border-prim  h-auto w-auto' />
+                                        src={i.img?.length ? `${i.img?.reverse()[0]?.filename}` : `/img/d1.jpg`} 
+                                        alt="" className='rounded-full border border-prim  h-8 w-8' />
                                     </div>
                                 ))}
                                 < div className='-ml-2 w-8 h-8' key={Math.random() * 9999}>

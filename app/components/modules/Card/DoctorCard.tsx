@@ -3,16 +3,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function DoctorCard({ username, email, img , _id}: Doctor) {
+export default function DoctorCard({ username, email, img , _id}: Doctor) { 
     return (
         <div className='w-64 mx-auto'>
             <div>
-                {img && <img
+                {img && <Image
                     width={500}
                     height={500}
-                    src={`${img[img.length - 1]?.filename}`}
+                    src={`/img/${img[img.length - 1]?.filename}`}
                     alt="" 
-                    className='w-64 h-64' 
+                    className='w-64 ' 
                     />}
 
             </div>
