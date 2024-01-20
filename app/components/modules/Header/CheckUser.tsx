@@ -9,7 +9,7 @@ export default function CheckUser() {
     const {userInfo , loading} = useContext(authContext)
 
     return (
-        <div>
+        <div className=' min-w-[160px]'>
             {loading ? (
                 <button className='btn-b text-sm flex gap-2'>Loading...<span className='w-5 h-5 border border-prim rounded-full animate-spin'>..</span></button>
             ) : (
