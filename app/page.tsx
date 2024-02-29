@@ -10,34 +10,32 @@ export interface Doctor {
   username: string;
   email: string;
   password: string;
-  _id: string,
-  img: { filename: string }[]
+  _id: string;
+  img: { filename: string }[];
 }
 
 const getData = async () => {
   try {
     const res = await fetch(`${BaseUrl}users/doctors`, {
       next: {
-        revalidate: 1
-      }
-    })
-    return res.json()
+        revalidate: 1,
+      },
+    });
+    return res.json();
   } catch (error) {
     console.log(error);
   }
-
-}
+};
 
 export default async function Home() {
-  
-  let doctors: { users: Doctor[] } = await getData()
+  let doctors: { users: Doctor[] } = await getData();
 
   return (
-    <div>
+    <div className=" font-Work_Sans">
       <Hero doctors={doctors.users} />
       <Specialities />
       {/* <BestDoctors doctors={JSON.parse(JSON.stringify(doctors)) }/> */}
       <BestDoctors doctors={doctors.users} />
     </div>
-  )
+  );
 }

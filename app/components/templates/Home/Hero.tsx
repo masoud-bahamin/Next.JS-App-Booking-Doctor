@@ -9,19 +9,19 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
         <div className='bg-slate-100'>
             <div className='container mx-auto px-4 md:px-0 flex py-8'>
                 <div className='lg:w-1/2 flex flex-col justify-center gap-8'>
-                    <h2 className='text-4xl font-bold'>
+                    <h2 className='text-2xl lg:text-4xl font-bold'>
                         Consult <span className='text-prim'>Best Doctors</span> Your <br />
                         Nearby Location.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                    <p className='text-sm lg:text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
                     <div className='flex gap-6'>
                         <button className='btn'>Start a Consult</button>
                         <Image width={100} height={100} src="/img/down-arrow-img.png" alt="" className=' h-auto w-auto'/>
                     </div>
                     <SearchBox />
                 </div>
-                <div className='relative hidden md:block'>
-                    <div>
-                        <Image width={500} height={500} src="/img/banner.png" alt="" className=' mx-auto h-auto w-auto' />
+                <div className='lg:w-1/2 relative text-center hidden md:block '>
+                    <div className='mx-auto'>
+                        <Image width={400} height={400} quality={100} src="/img/banner.png" alt="" className='lg:mx-auto' />
                     </div>
                     <span className='absolute left-0 top-[40%] hero-text-animate3'>
                         <span className='bg-white rounded-lg p-2 flex items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
@@ -29,7 +29,7 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
                             <p>Regular Checkup</p>
                         </span>
                     </span>
-                    <span className='absolute right-0 top-[50%] hero-text-animate'>
+                    <span className='hidden lg:block absolute right-0 top-[10%] hero-text-animate'>
                         <span className='bg-white rounded-lg p-3 flex flex-col items-center text-gray-600 font-semibold gap-3 w-fit text-xs'>
                             <div className='rounded-full w-12 h-12'>
                                 <Image width={50} height={50} src="/img/d1.jpg" alt="" className='rounded-full' />

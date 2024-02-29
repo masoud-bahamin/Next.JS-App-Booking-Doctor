@@ -46,7 +46,7 @@ export default function AppointmentCard({ times , day }: AppointmentCardProps) {
                     <span
                         onClick={() => selectAppointment(i.id)}
                         key={i.id}
-                        className={`${i.active ? "text-prim bg-blue-50" : ""} py-1 text-sm px-6 hover:bg-prim hover:text-white rounded-md cursor-pointer`}>
+                        className={`${i.active ? "text-prim bg-blue-50" : ""} w-20 h-8 flex items-center justify-center m-1 text-sm  hover:bg-prim hover:text-white rounded-md cursor-pointer`}>
                         {i.title}
                     </span>
                 ))}

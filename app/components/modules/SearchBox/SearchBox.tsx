@@ -3,7 +3,7 @@ import React from 'react'
 export default function SearchBox() {
   return (
     <div className='bg-white rounded-lg p-4 text-xs flex justify-between items-center z-10'>
-        <select className='text-gray-500 outline-none hidden md:inline-block'>
+        <select className='text-gray-500 outline-none hidden lg:inline-block bg-transparent'>
             <option value={"-1"}>Select a location</option>
             <option value={"-1"}>England</option>
             <option value={"-1"}>Franc</option>

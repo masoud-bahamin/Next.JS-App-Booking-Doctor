@@ -8,10 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container : {
+        center : true,
+      },
       colors: {
         "prim": "#0e82fd",
         "second": "#15558d",
-        "third": "#15558d"
+        "third": "#15558d",
+        "paragraf" : "#6B7280"
       },
       fontFamily : {
         "Barlow" : "Barlow",
@@ -20,5 +24,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode:"class"
 }
 export default config

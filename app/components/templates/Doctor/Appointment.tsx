@@ -5,37 +5,37 @@ const appArrey = [
     {
         id: "1", times: [{ id: "1", active: false, time: "11:00 am", title: "11:00 am" },
         { id: "2", active: false, time: "11:00 am", title: "12:00 pm" },
-        { id: "3", active: false, time: "11:00 am", title: "1:00 pm" },
-        { id: "4", active: false, time: "11:00 am", title: "2:00 pm" },
-        { id: "5", active: false, time: "11:00 am", title: "3:00 pm" },], day: "Monday", date: "21/10"
+        { id: "3", active: false, time: "11:00 am", title: "01:00 pm" },
+        { id: "4", active: false, time: "11:00 am", title: "02:00 pm" },
+        { id: "5", active: false, time: "11:00 am", title: "03:00 pm" },], day: "Monday", date: "21/10"
     },
     {
         id: "2", times: [{ id: "1", active: false, time: "11:00 am", title: "11:00 am" },
         { id: "2", active: false, time: "11:00 am", title: "12:00 pm" },
-        { id: "3", active: false, time: "11:00 am", title: "1:00 pm" },
-        { id: "4", active: false, time: "11:00 am", title: "2:00 pm" },
-        { id: "5", active: false, time: "11:00 am", title: "3:00 pm" }], day: "Tuesday", date: "22/10"
+        { id: "3", active: false, time: "11:00 am", title: "01:00 pm" },
+        { id: "4", active: false, time: "11:00 am", title: "02:00 pm" },
+        { id: "5", active: false, time: "11:00 am", title: "03:00 pm" }], day: "Tuesday", date: "22/10"
     },
     {
         id: "3", times: [{ id: "1", active: false, time: "11:00 am", title: "11:00 am" },
         { id: "2", active: false, time: "11:00 am", title: "12:00 pm" },
-        { id: "3", active: false, time: "11:00 am", title: "1:00 pm" },
-        { id: "4", active: false, time: "11:00 am", title: "2:00 pm" },
-        { id: "5", active: false, time: "11:00 am", title: "3:00 pm" }], day: "Wednesday", date: "23/10"
+        { id: "3", active: false, time: "11:00 am", title: "01:00 pm" },
+        { id: "4", active: false, time: "11:00 am", title: "02:00 pm" },
+        { id: "5", active: false, time: "11:00 am", title: "03:00 pm" }], day: "Wednesday", date: "23/10"
     },
     {
         id: "4", times: [{ id: "1", active: false, time: "11:00 am", title: "11:00 am" },
         { id: "2", active: false, time: "11:00 am", title: "12:00 pm" },
-        { id: "3", active: false, time: "11:00 am", title: "1:00 pm" },
-        { id: "4", active: false, time: "11:00 am", title: "2:00 pm" },
-        { id: "5", active: false, time: "11:00 am", title: "3:00 pm" }], day: "Thursday", date: "24/10"
+        { id: "3", active: false, time: "11:00 am", title: "01:00 pm" },
+        { id: "4", active: false, time: "11:00 am", title: "02:00 pm" },
+        { id: "5", active: false, time: "11:00 am", title: "03:00 pm" }], day: "Thursday", date: "24/10"
     },
     {
         id: "5", times: [{ id: "1", active: false, time: "11:00 am", title: "11:00 am" },
         { id: "2", active: false, time: "11:00 am", title: "12:00 pm" },
-        { id: "3", active: false, time: "11:00 am", title: "1:00 pm" },
-        { id: "4", active: false, time: "11:00 am", title: "2:00 pm" },
-        { id: "5", active: false, time: "11:00 am", title: "3:00 pm" }], day: "Friday", date: "25/10"
+        { id: "3", active: false, time: "11:00 am", title: "01:00 pm" },
+        { id: "4", active: false, time: "11:00 am", title: "02:00 pm" },
+        { id: "5", active: false, time: "11:00 am", title: "03:00 pm" }], day: "Friday", date: "25/10"
     },
 ]
 
