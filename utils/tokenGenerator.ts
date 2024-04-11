@@ -1,13 +1,12 @@
-import { sign, verify } from "jsonwebtoken"
+import { sign, verify } from "jsonwebtoken";
 
-
-const KEY = "wowcheaopwerwersdfg"
+const KEY = "wowcheaopwerwersdfg";
 export const tokenGenarator = (data: string | {}) => {
-    const token = sign(data, KEY, { expiresIn: "72h" })
-    return token
-}
+  const token = sign(data, KEY, { expiresIn: "72h" });
+  return token;
+};
 
 export const exportToken = (data: string) => {
-    const codes = verify(data, KEY)
-    return codes
-}
+  const info = verify(data, KEY);
+  return info;
+};

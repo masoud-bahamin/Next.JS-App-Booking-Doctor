@@ -1,172 +1,169 @@
-"use client"
+"use client";
 
-import BaseUrl from "@/utils/baseUrl";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { UpdateUser } from "../account/page";
 
 interface User {
-    username: string,
-    password: string,
-    email: string,
+  username: string;
+  password: string;
+  email: string;
 }
 
 interface LoginUser {
-    password: string,
-    email: string,
+  password: string;
+  email: string;
 }
 
 interface contextType {
-    userInfo: UpdateUser | null,
-    loading: boolean,
-    register: (user: User & { role: "USER" | "DOCTOR" }) => void;
-    login: (user: LoginUser) => void;
-    logout: () => void;
-    error: string;
+  userInfo: UpdateUser | null;
+  loading: boolean;
+  register: (user: User & { role: "USER" | "DOCTOR" }) => void;
+  login: (user: LoginUser) => void;
+  logout: () => void;
+  error: string;
 }
 
-export const authContext = createContext({} as contextType)
+export const authContext = createContext({} as contextType);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [userInfo, setUserInfo] = useState<null | UpdateUser>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const [userInfo, setUserInfo] = useState<null | UpdateUser>(null)
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
+  const router = useRouter();
 
-    const router = useRouter()
+  const login = async (user: LoginUser) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/users/login`, {
+        method: "POST",
+        body: JSON.stringify(user),
+      });
+      const data = await res.json();
 
-    const login = async (user: LoginUser) => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BaseUrl}users/login`, {
-                method: "POST",
-                body: JSON.stringify(user)
-            })
-            const data = await res.json()
-            console.log(data);
-            if (data.resulte) {
-                Swal.fire({
-                    icon: "success",
-                    text: "your signing was successfully"
-                })
-                getUserInfo()
-                router.push("/account")
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    text: data.message
-                })
-            }
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                text: "your signing was NOT successfully"
-            })
-            router.refresh()
-        }
-
-        setLoading(false)
+      if (data.resulte) {
+        Swal.fire({
+          icon: "success",
+          text: "your signing was successfully",
+        });
+        getUserInfo();
+        router.push("/account");
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: data.message,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        text: "your signing was NOT successfully",
+      });
+      router.refresh();
     }
 
-    const register = async (user: User & { role: "USER" | "DOCTOR" }) => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BaseUrl}users/create`, {
-                method: "POST",
-                body: JSON.stringify(user)
-            })
-            const data = await res.json()
+    setLoading(false);
+  };
 
-            if (data.resulte) {
-                Swal.fire({
-                    icon: "success",
-                    text: "your signing was successfully"
-                })
-                router.push("/account")
-                getUserInfo()
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    text: data.message
-                })
-            }
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                text: "your signing was NOT successfully"
-            })
-            router.refresh()
-        }
+  const register = async (user: User & { role: "USER" | "DOCTOR" }) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/users/create`, {
+        method: "POST",
+        body: JSON.stringify(user),
+      });
+      const data = await res.json();
 
-        setLoading(false)
+      if (data.resulte) {
+        Swal.fire({
+          icon: "success",
+          text: "your signing was successfully",
+        });
+        router.push("/account");
+        getUserInfo();
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: data.message,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        text: "your signing was NOT successfully",
+      });
+      router.refresh();
     }
 
-    const logout = async () => {
+    setLoading(false);
+  };
 
-        setLoading(true)
+  const logout = async () => {
+    setLoading(true);
 
-        try {
-            const res = await fetch(`${BaseUrl}users/logout`, {
-                method: "POST",
-                
-            })
-            const data = await res.json()
-            console.log(data);
-            
-            if (data.resulte) {
-                Swal.fire({
-                    icon: "success",
-                    text: "your logout was successfully"
-                })
-                router.push("/")
-                setUserInfo(null)
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    text: data.message
-                })
-                setError(data.message)
-            }
-        } catch (error) {
-            Swal.fire({
-                icon: "error",
-                text: "please try again"
-            })
-            setError("catch error")
-        }
+    try {
+      const res = await fetch(`/api/users/logout`, {
+        method: "POST",
+      });
+      const data = await res.json();
 
-        setLoading(false)
+      if (data.resulte) {
+        Swal.fire({
+          icon: "success",
+          text: "your logout was successfully",
+        });
+        router.push("/");
+        setUserInfo(null);
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: data.message,
+        });
+        setError(data.message);
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        text: "please try again",
+      });
+      setError("catch error");
     }
 
-    const getUserInfo = async () => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BaseUrl}users/getUser`)
-            const data = await res.json()
-            if (data.resulte) {
-                setUserInfo(data.user)
-            } else {
-                setError(data.message)
-            }
-        } catch (error) {
-            setError("cath error in context")
-        }
+    setLoading(false);
+  };
 
-        setLoading(false);
+  const getUserInfo = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/users/getUser`);
+      const data = await res.json();
+      if (data.resulte) {
+        setUserInfo(data.user);
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError("cath error in context");
     }
 
-    useEffect(() => {
-        getUserInfo()
-    }, [])
+    setLoading(false);
+  };
 
-    return (
-        <authContext.Provider value={{ userInfo, loading, register, error, login, logout }}>
-            {children}
-        </authContext.Provider>
-    )
-}
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
-export default AuthProvider
+  return (
+    <authContext.Provider
+      value={{ userInfo, loading, register, error, login, logout }}
+    >
+      {children}
+    </authContext.Provider>
+  );
+};
+
+export default AuthProvider;
