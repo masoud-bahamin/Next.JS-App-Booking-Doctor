@@ -8,7 +8,11 @@ import Image from "next/image";
 
 export default async function page({ params }: { params: { id: string } }) {
   connectToDb();
-  const user = await userModel.findOne({ _id: params.id });
+  const user = await userModel
+    .findOne({ _id: params.id })
+    .populate("comments")
+    .lean();
+
   const images = await imageModel.find({ userId: params.id });
 
   return (
@@ -106,16 +110,23 @@ export default async function page({ params }: { params: { id: string } }) {
               </svg>
               <span className="text-xs">Astrailia</span>
             </div>
-            <button className="btn-b w-full mb-3 text-xs">ADD FEEDBACK</button>
+            <a
+              href="#tab-section"
+              className="btn-b inline-block text-center w-full mb-3 text-xs"
+            >
+              ADD FEEDBACK
+            </a>
             <a
               className="btn inline-block text-center w-full mb-3 text-xs"
-              href="#appointment"
+              href="#tab-section"
             >
               BOOK APPOINTMENT
             </a>
           </div>
         </div>
-        <TabSection user={JSON.parse(JSON.stringify(user))} />
+        <div id="tab-section">
+          <TabSection user={JSON.parse(JSON.stringify(user))} />
+        </div>
       </div>
     </div>
   );

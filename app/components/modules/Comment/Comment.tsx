@@ -6,7 +6,10 @@ import Swal from "sweetalert2";
 import Rating from "./Rating";
 import { CommentType } from "../../templates/Doctor/TabSection";
 
-export default function Comment({ comments }: CommentType) {
+export default function Comment({
+  comments,
+  doctorId,
+}: CommentType & { doctorId: string }) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +28,7 @@ export default function Comment({ comments }: CommentType) {
         body: JSON.stringify({
           message,
           rateNumber: 4,
-          userId: "657213d3d1cc9214e41c235e",
+          userId: doctorId,
           username: "masoud",
         }),
       });
@@ -53,8 +56,6 @@ export default function Comment({ comments }: CommentType) {
     }
     setLoading(false);
   };
-
-  console.log(comments);
 
   return (
     <>
