@@ -16,12 +16,22 @@ interface LoginUser {
   email: string;
 }
 
+interface UpdateType {
+  name: string;
+  phone: string;
+  age: number;
+  bio: string;
+  location: string;
+}
+
 interface contextType {
   userInfo: UpdateUser | null;
   loading: boolean;
   register: (user: User & { role: "USER" | "DOCTOR" }) => void;
+  updateUser: (user: UpdateType) => void;
   login: (user: LoginUser) => void;
   logout: () => void;
+  getUserInfo: () => void;
   error: string;
 }
 
@@ -30,7 +40,7 @@ export const authContext = createContext({} as contextType);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [userInfo, setUserInfo] = useState<null | UpdateUser>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
@@ -112,6 +122,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await res.json();
 
       if (data.resulte) {
+        router.refresh();
         Swal.fire({
           icon: "success",
           text: "your logout was successfully",
@@ -153,13 +164,58 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(false);
   };
 
+  const updateUser = async (user: UpdateType) => {
+    if (userInfo === null) return false;
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/users/update/${userInfo._id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          name: user.name || userInfo?.name || "name",
+          phone: user.phone || userInfo?.phone || 535,
+          age: user.age || userInfo?.age || 20,
+          bio: user.bio || userInfo?.bio || "bio",
+          location: user.location || userInfo?.location || "location",
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.resulte) {
+        Swal.fire({
+          icon: "success",
+          text: "update successfully",
+        });
+      }
+      getUserInfo();
+      // router.refresh();
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        text: "update was NOT successfully",
+      });
+      setLoading(false);
+      return false;
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     getUserInfo();
   }, []);
 
   return (
     <authContext.Provider
-      value={{ userInfo, loading, register, error, login, logout }}
+      value={{
+        updateUser,
+        getUserInfo,
+        userInfo,
+        loading,
+        register,
+        error,
+        login,
+        logout,
+      }}
     >
       {children}
     </authContext.Provider>

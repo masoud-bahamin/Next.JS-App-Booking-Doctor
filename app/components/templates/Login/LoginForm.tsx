@@ -32,6 +32,7 @@ export default function LoginForm() {
               name="email"
               className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full"
               placeholder={"email"}
+              type="email"
             />
             {errors.password && touched.password ? (
               <p className="py-2 text-rose-400 text-xs w-full">
@@ -42,6 +43,7 @@ export default function LoginForm() {
               name="password"
               className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full"
               placeholder="password"
+              type="password"
             />
             <div className="flex items-center gap-3  p-4 mb-6">
               <input

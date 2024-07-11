@@ -55,6 +55,7 @@ export default function Signup() {
                     name="email"
                     className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full"
                     placeholder={"email"}
+                    type="email"
                   />
                   {errors.username && touched.username ? (
                     <p className="py-2 text-rose-400 text-xs w-full">
@@ -65,6 +66,7 @@ export default function Signup() {
                     name="username"
                     className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full"
                     placeholder="username"
+                    type="text"
                   />
                   {errors.password && touched.password ? (
                     <p className="py-2 text-rose-400 text-xs w-full">
@@ -75,6 +77,7 @@ export default function Signup() {
                     name="password"
                     className="p-3 mb-3 rounded-md text-xs border border-slate-10 outline-none w-full"
                     placeholder="password"
+                    type="password"
                   />
                   {errors.repassword && touched.repassword ? (
                     <p className="py-2 text-rose-400 text-xs w-full">
@@ -85,6 +88,7 @@ export default function Signup() {
                     name="repassword"
                     className="p-3 mb-5 rounded-md text-xs border border-slate-10 outline-none w-full"
                     placeholder="retype password"
+                    type="password"
                   />
                   <h3 className="text-lg font-medium mb-3">Start as :</h3>
                   <div className="flex border rounded-md">

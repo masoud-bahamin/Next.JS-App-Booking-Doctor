@@ -4,6 +4,7 @@ import { UpdateUser } from "@/app/account/page";
 import { authContext } from "@/app/context/authContext";
 import updateScema from "@/validations/clientValidations/accounForm";
 import { Field, Form, Formik } from "formik";
+import { redirect, useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -13,41 +14,10 @@ interface AccountFormProps {
 }
 
 export default function AccountForm() {
-  const [loading, setLoading] = useState(false);
+  const { userInfo, getUserInfo, updateUser, loading } =
+    useContext(authContext);
 
-  const { userInfo } = useContext(authContext) as {
-    logout: () => void;
-    userInfo: UpdateUser;
-  };
-
-  const updateUser = async (user: {}) => {
-    if (userInfo === null) return false;
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/users/update/${userInfo._id}`, {
-        method: "PUT",
-        body: JSON.stringify(user),
-      });
-      const data = await res.json();
-      console.log(data);
-      if (data.resulte) {
-        Swal.fire({
-          icon: "success",
-          text: "update successfully",
-        });
-      }
-      // getUserInfo(token)
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        text: "update was NOT successfully",
-      });
-      setLoading(false);
-      return false;
-    }
-    setLoading(false);
-  };
+  const router = useRouter();
 
   return (
     <div className=" font-Barlow">
@@ -65,42 +35,36 @@ export default function AccountForm() {
           <h3 className="text-lg font-medium mb-8">Your Details</h3>
           <Formik
             onSubmit={(infos, { resetForm }) => {
-              updateUser(infos);
+              const { age, name, location, phone, bio } = infos;
+              updateUser({ age: age || 18, name, location, phone, bio });
               resetForm();
             }}
             initialValues={{
-              name: "",
-              phone: "",
-              age: userInfo?.age || 18,
-              bio: "",
-              location: "",
-              email: userInfo?.email,
-              username: userInfo?.username,
+              name: userInfo?.name || "",
+              phone: userInfo?.phone || "",
+              age: userInfo?.age,
+              bio: userInfo?.bio || "",
+              location: userInfo?.location || "",
             }}
             validationSchema={updateScema}
           >
             {({ errors, touched }) => (
               <Form className="xl:min-w-[600px]">
-                {touched.email ? (
-                  <p className="text-xs py-2 text-rose-400">
-                    you can NOT change it
-                  </p>
-                ) : null}
-                <Field
+                <input
+                  readOnly
+                  defaultValue={userInfo?.email}
                   name="email"
                   className="border outline-none w-full p-3 mb-3 text-gray-500"
-                  placeholder={userInfo?.email || "Email..."}
+                  placeholder={"Email..."}
                   type="email"
                 />
-                {touched.username ? (
-                  <p className="text-xs py-2 text-rose-400">
-                    you can NOT change it
-                  </p>
-                ) : null}
-                <Field
+
+                <input
+                  readOnly
+                  defaultValue={userInfo?.username}
                   name="username"
                   className="border outline-none w-full p-3 mb-3 text-gray-500"
-                  placeholder={userInfo?.username || "UserName..."}
+                  placeholder={"UserName..."}
                   type="text"
                 />
                 {errors.name && touched.name ? (
@@ -125,9 +89,10 @@ export default function AccountForm() {
                   <p className="text-xs py-2 text-rose-400">{errors.age}</p>
                 ) : null}
                 <Field
+                  // defaultValue={userInfo?.age}
                   name="age"
                   className="border outline-none w-full p-3 mb-3 text-gray-500"
-                  placeholder={userInfo?.age || "Your Age..."}
+                  placeholder={userInfo?.age}
                   type="number"
                 />
                 {errors.bio && touched.bio ? (
