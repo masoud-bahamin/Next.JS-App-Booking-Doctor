@@ -11,7 +11,7 @@ interface SpecialitiBoxProps {
 export default function SpecialitiBox({ title, img, id }: SpecialitiBoxProps) {
   return (
     <Link
-      href={`/speciality/${id}`}
+      href={`/specialities/${id}`}
       className="inline-block text-center rounded-lg p-8 group hover:border-prim"
     >
       <div className="bg-slate-200 group-hover:bg-gray-300 w-20 h-20 flex justify-center items-center mx-auto rounded-full mb-4">

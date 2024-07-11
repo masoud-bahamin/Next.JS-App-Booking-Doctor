@@ -1,15 +1,5 @@
 import React from "react";
-import SpecialitiBox from "../../modules/SpecialitiBox/SpecialitiBox";
 import SliderApp from "./slider";
-
-const SpecialitiArrey = [
-  { id: 1, img: "/img/icon3.png", title: "Cardiologist" },
-  { id: 2, img: "/img/icon4.png", title: "Dentist" },
-  { id: 3, img: "/img/icon10.png", title: "Labratory" },
-  { id: 4, img: "/img/icon8.png", title: "MRI Scans" },
-  { id: 5, img: "/img/icon2.png", title: "Neurology" },
-  { id: 6, img: "/img/icon6-4.png", title: "Orthopedic" },
-];
 
 export default function Specialities() {
   return (

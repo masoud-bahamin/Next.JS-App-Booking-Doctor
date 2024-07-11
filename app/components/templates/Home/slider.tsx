@@ -17,7 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import SpecialitiBox from "../../modules/SpecialitiBox/SpecialitiBox";
 
-const SpecialitiArrey = [
+export const SpecialitiArrey = [
   { id: 1, img: "/img/icon3.png", title: "Cardiologist" },
   { id: 2, img: "/img/icon4.png", title: "Dentist" },
   { id: 3, img: "/img/icon10.png", title: "Labratory" },

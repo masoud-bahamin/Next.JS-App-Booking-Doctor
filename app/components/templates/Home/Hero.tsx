@@ -2,6 +2,7 @@ import React from "react";
 import SearchBox from "../../modules/SearchBox/SearchBox";
 import Image from "next/image";
 import { Doctor } from "@/app/page";
+import Link from "next/link";
 
 export default function Hero({ doctors }: { doctors: Doctor[] }) {
   return (
@@ -67,49 +68,34 @@ export default function Hero({ doctors }: { doctors: Doctor[] }) {
             </span>
           </span>
           <span className="absolute right-0 bottom-5 animate-bounce">
-            <div className="bg-white rounded-lg p-3 text-gray-600 font-semibold text-xs cursor-pointer">
-              <p className="mb-3">Meet Our Doctors</p>
-              <div className="flex">
-                {doctors.map((i) => (
+            <Link href="/doctors">
+              <div className="bg-white rounded-lg p-3 text-gray-600 font-semibold text-xs cursor-pointer">
+                <p className="mb-3">Meet Our Doctors</p>
+                <div className="flex">
+                  {doctors.slice(0, 6)?.map((i) => (
+                    <div className="-ml-2 w-8 h-8" key={Math.random() * 9999}>
+                      <img
+                        width={40}
+                        height={40}
+                        src={
+                          i.img?.length
+                            ? `${i.img?.reverse()[0]?.filename}`
+                            : `/img/d1.jpg`
+                        }
+                        alt=""
+                        className="rounded-full border border-prim  h-8 w-8"
+                      />
+                    </div>
+                  ))}
+
                   <div className="-ml-2 w-8 h-8" key={Math.random() * 9999}>
-                    <img
-                      width={40}
-                      height={40}
-                      src={
-                        i.img?.length
-                          ? `/img/${i.img?.reverse()[0]?.filename}`
-                          : `/img/d1.jpg`
-                      }
-                      alt=""
-                      className="rounded-full border border-prim  h-8 w-8"
-                    />
-                  </div>
-                ))}
-                <div className="-ml-2 w-8 h-8" key={Math.random() * 9999}>
-                  <Image
-                    width={40}
-                    height={40}
-                    src={`/img/d1.jpg`}
-                    alt=""
-                    className="rounded-full border border-prim  h-auto w-auto"
-                  />
-                </div>
-                <div className="-ml-2 w-8 h-8" key={Math.random() * 9999}>
-                  <Image
-                    width={40}
-                    height={40}
-                    src={`/img/d2.jpg`}
-                    alt=""
-                    className="rounded-full border border-prim  h-auto w-auto"
-                  />
-                </div>
-                <div className="-ml-2 w-8 h-8" key={Math.random() * 9999}>
-                  <div className="rounded-full w-9 h-9 border text-white bg-prim flex justify-center items-center text-xs font-thin">
-                    20k+
+                    <div className="rounded-full w-9 h-9 border text-white bg-prim flex justify-center items-center text-xs font-thin">
+                      20k+
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </span>
         </div>
       </div>

@@ -22,11 +22,11 @@ export default async function page({ params }: { params: { id: string } }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 justify-between mb-10">
           <div className="flex gap-4 mx-auto md:mx-0">
             <div>
-              <Image
+              <img
                 width={200}
                 height={200}
                 alt=""
-                src={`/img/${images[0]?.filename}`}
+                src={`${images[images.length - 1]?.filename}`}
                 className="rounded-md"
               />
             </div>
