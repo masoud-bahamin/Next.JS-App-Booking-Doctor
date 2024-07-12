@@ -5,7 +5,7 @@ function Blog() {
   return (
     <div className="font-Work_Sans">
       <Breadcrumb title="BLOG" route="Blog" />
-      <div className="container mx-4 md:mx-0 pb-20 flex flex-wrap md:flex-nowrap items-center border-b">
+      <div className="container px-4 md:px-0 pb-20 flex flex-wrap md:flex-nowrap items-center border-b">
         <div>
           <img
             className="w-full md:w-[2000px]"
@@ -40,7 +40,7 @@ function Blog() {
           </button>
         </div>
       </div>
-      <div className="container mx-4 md:mx-auto flex flex-wrap md:flex-nowrap gap-10">
+      <div className="container px-4 md:px-auto flex flex-wrap md:flex-nowrap gap-10">
         <div className="md:w-2/3  pt-20">
           <div className="grid md:grid-cols-2 gap-10">
             <div className=" hover:-translate-y-2 duration-500 cursor-pointer">

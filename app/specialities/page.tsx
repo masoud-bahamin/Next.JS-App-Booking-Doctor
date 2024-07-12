@@ -42,7 +42,7 @@ export default function Page() {
           />
         </div>
       </div>
-      <div className="container mx-4 sm:mx-auto flex flex-wrap flex-col-reverse lg:flex-row lg:flex-nowrap gap-10">
+      <div className="container px-4 sm:px-auto flex flex-wrap flex-col-reverse lg:flex-row lg:flex-nowrap gap-10">
         <div className="lg:w-1/3 border-r pr-10 pt-20">
           <div className="text-center mb-8">
             <Image
