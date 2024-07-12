@@ -1,10 +1,8 @@
-import React from "react";
-import Specialities from "../components/templates/Home/Specialities";
 import SpecialitiBox from "../components/modules/SpecialitiBox/SpecialitiBox";
 import Breadcrumb from "../components/modules/Breadcrumb/Breadcrumb";
 import Image from "next/image";
 
-export const SpecialitiArrey = [
+const SpecialitiArrey = [
   { id: 1, img: "/img/icon3.png", title: "Cardiologist" },
   { id: 2, img: "/img/icon4.png", title: "Dentist" },
   { id: 3, img: "/img/icon10.png", title: "Labratory" },
@@ -15,7 +13,7 @@ export const SpecialitiArrey = [
   { id: 8, img: "/img/icon6-4.png", title: "Orthopedic" },
 ];
 
-export default function page() {
+export default function Page() {
   return (
     <div>
       <Breadcrumb title="SPECIALITIES" route="Specialities" />
