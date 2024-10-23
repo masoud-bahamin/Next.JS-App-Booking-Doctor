@@ -32,7 +32,7 @@ function DeleteBtn({ url }: { url: string }) {
 
     return (
         <button onClick={deleteHandler}
-            className="bg-rose-500 text-white p-2">DELETE</button>
+            className="bg-rose-500 text-white text-sm rounded-lg p-2">DELETE</button>
     )
 }
 

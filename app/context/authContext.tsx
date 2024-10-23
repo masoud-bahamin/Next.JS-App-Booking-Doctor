@@ -135,8 +135,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await res.json();
       if (data.resulte) {
         setUserInfo(data.user);
+        setLoading(false);
       } else {
         setError(data.message);
+        setLoading(false);
       }
     } catch (error) {
       setError("cath error in context");
@@ -152,11 +154,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const res = await fetch(`/api/users/update/${userInfo._id}`, {
         method: "PUT",
         body: JSON.stringify({
-          name: user.name || userInfo?.name || "name",
-          phone: user.phone || userInfo?.phone || 535,
-          age: user.age || userInfo?.age || 20,
-          bio: user.bio || userInfo?.bio || "bio",
-          location: user.location || userInfo?.location || "location",
+          name: user.name || userInfo?.name || "Name",
+          phone: user.phone || userInfo?.phone || "No Phone Number",
+          age: user.age || userInfo?.age || 18,
+          bio: user.bio || userInfo?.bio || "Bio",
+          location: user.location || userInfo?.location || "USA",
         }),
       });
       const data = await res.json();
@@ -168,7 +170,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
       }
       getUserInfo();
-      // router.refresh();
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -201,6 +202,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         text: "Your booking was Not successfull"
       })
     }
+    setLoading(false);
   }
 
   useEffect(() => {

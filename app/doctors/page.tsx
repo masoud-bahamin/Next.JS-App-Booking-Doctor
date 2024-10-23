@@ -1,6 +1,6 @@
 import React from "react";
 import Breadcrumb from "../components/modules/Breadcrumb/Breadcrumb";
-import img1 from "@/public/img/doctor-02.jpg";
+import img1 from "@/public/img/user.png";
 import Image from "next/image";
 import Link from "next/link";
 import userModel from "@/models/user";
@@ -91,7 +91,7 @@ async function Doctors() {
                 <div className=" bg-white rounded-b-md">
                   <div className="flex justify-between mb-3">
                     <h3>
-                      <Link href={`/doctor/_id`}>Dr. {doctor.username}</Link>
+                      <Link href={`/doctor/${doctor._id}`}>Dr. {doctor.username}</Link>
                     </h3>
                     <p className="text-white text-xs flex items-center gap-1 bg-yellow-500 p-1 rounded">
                       <svg

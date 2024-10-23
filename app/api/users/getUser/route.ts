@@ -6,9 +6,8 @@ import { headers } from "@/utils/helps";;
 
 export async function GET(req: NextRequest) {
   try {
-    connectToDb();
     const cookie = req.cookies.get("token");
-
+    
     if (!cookie?.value) {
       return NextResponse.json(
         { resulte: false, message: "token not found" },
@@ -18,8 +17,9 @@ export async function GET(req: NextRequest) {
         }
       );
     }
-
+    
     const { email } = exportToken(cookie?.value) as { email: string };
+    connectToDb();
 
     if (email) {
       const user = await userModel
@@ -50,11 +50,7 @@ export async function GET(req: NextRequest) {
         { resulte: false, message: "email not found" },
         {
           status: 420,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          },
+          headers
         }
       );
     }
@@ -63,11 +59,7 @@ export async function GET(req: NextRequest) {
       { resulte: false, message: "catch error", error },
       {
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
+        headers
       }
     );
   }

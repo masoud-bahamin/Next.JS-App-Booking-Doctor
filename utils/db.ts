@@ -5,6 +5,5 @@ export default function connectToDb() {
         return false
     } else {
         mongoose.connect("mongodb+srv://bahaminwp:bahamin1364@bahamincluster.zht7zml.mongodb.net/Project-one")
-        console.log("connect to Project-one DB");
     }
 }

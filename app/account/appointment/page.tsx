@@ -23,7 +23,6 @@ function Appointment() {
             ) : (
                 <div>No Reservation</div>
             )}
-
         </div>
     )
 }
