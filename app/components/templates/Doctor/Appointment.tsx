@@ -7,28 +7,35 @@ import Swal from 'sweetalert2'
 
 const DayArray = ["Mon", "Tue", "Wen", "The", "Fri", "Sun", "Sat"]
 
-export default function Appointment({ id, bookings }: { id: string, bookings: AppointmentType[] }) {
+export default function Appointment({ id}: { id: string}) {
     const [date, setDate] = useState("");
     const [hour, setHour] = useState("");
     const [timeDay, setTimeDay] = useState<Appointment | null>(null);
+    const [bookings , setBookings] = useState<AppointmentType[]>([])
 
     const { bookAppointment, userInfo } = useContext(authContext)
 
+    const getBooking =  async () => {
+            const res = await fetch(`/api/rezervation/${id}`)
+            if(res.status === 200){
+                const data = await res.json()
+                setBookings(data.bookings)
+            }      
+        }
+
     useEffect(() => {
         const now = new Date()
-        setDate(`2024-${now.getMonth() + 1}-${now.getDate()}`)
+        setDate(`2024-${now.getMonth() + 1}-${now.getDate()}`);
+        getBooking()
+       
     }, [])
 
     useEffect(() => {
-
-
         const timeHours = Array(7).fill(0).map((i, index) => {
             return { id: index, active: false, title: `${15 + index}:00` }
         })
 
-
         const time = new Date(date)
-        console.log(time);
 
         const todayDate = time.getDate()
         const day = DayArray[time.getDay()]
@@ -89,7 +96,7 @@ export default function Appointment({ id, bookings }: { id: string, bookings: Ap
                             {timeDay.times.map(i => (
                                 <AppointmentCard
                                     key={i.id}
-                                    isActive={bookings.some(b =>( b.date.toString().slice(11,16) === i.title) && (b.date.toString().slice(5,10) === timeDay.date))}
+                                    isActive={bookings.some(b => (b.date.toString().slice(11, 16) === i.title) && (b.date.toString().slice(5, 10) === timeDay.date))}
                                     setHour={setHour}
                                     {...i}
                                 />

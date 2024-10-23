@@ -5,19 +5,9 @@ import Overview from "./Overview";
 import Comment from "../../modules/Comment/Comment";
 import Appointment from "./Appointment";
 
-export type CommentType = {
-  comments: [
-    {
-      message: string;
-      username: string;
-      rateNumber: number;
-    }
-  ];
-};
+type TabSectionProps = { user: UpdateUser & CommentType, id: string  };
 
-type TabSectionProps = { user: UpdateUser & CommentType, id: string , bookings : AppointmentType[] };
-
-export default function TabSection({ user, id ,bookings }: TabSectionProps) {
+export default function TabSection({ user, id  }: TabSectionProps) {
   const [tab, setTab] = useState("appointment");
   return (
     <div>
@@ -46,7 +36,7 @@ export default function TabSection({ user, id ,bookings }: TabSectionProps) {
       </div>
       <div className="py-6 lg:p-12">
         {tab === "appointment" ? (
-          <Appointment id={id} bookings={bookings}/>
+          <Appointment id={id}/>
         ) : tab === "overview" ? (
           <Overview username={user?.username} />
         ) : (

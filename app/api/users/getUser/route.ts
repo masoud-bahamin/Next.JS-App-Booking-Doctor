@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
         .findOne({ email }, "-__v")
         .populate("img")
         .populate("comments")
+        .populate("appointments")
         .lean();
       if (user) {
         return NextResponse.json(

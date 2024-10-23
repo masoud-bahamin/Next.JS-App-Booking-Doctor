@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Rating from "./Rating";
-import { CommentType } from "../../templates/Doctor/TabSection";
+
 
 export default function Comment({
   comments,

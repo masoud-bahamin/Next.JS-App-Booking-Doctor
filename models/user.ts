@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Image = require("@/models/image")
 const Comment = require("@/models/comment")
+const Booking = require("@/models/booking")
 
 const schema = mongoose.Schema({
     email: {
@@ -66,6 +67,12 @@ schema.virtual("img" , {
 
 schema.virtual("comments",{
     ref : "Comment",
+    localField : "_id",
+    foreignField : "userId"
+})
+
+schema.virtual("appointments" , {
+    ref:"Booking",
     localField : "_id",
     foreignField : "userId"
 })

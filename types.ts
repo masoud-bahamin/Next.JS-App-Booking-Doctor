@@ -28,7 +28,8 @@ interface UpdateUser {
   bio: string,
   name: string,
   phone: string,
-  _id: string
+  _id: string,
+  appointments? : AppointmentType []
 }
 
 interface AppointmentType {
@@ -61,3 +62,13 @@ interface Appointment {
   id: number,
 
 }
+
+interface CommentType {
+  comments: [
+    {
+      message: string;
+      username: string;
+      rateNumber: number;
+    }
+  ];
+};

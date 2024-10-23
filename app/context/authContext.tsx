@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const initialContext: contextType = {
@@ -206,6 +206,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     getUserInfo();
   }, []);
+
 
   return (
     <authContext.Provider

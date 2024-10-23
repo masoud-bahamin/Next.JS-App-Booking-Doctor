@@ -17,9 +17,8 @@ export default async function page({ params }: { params: { id: string } }) {
     .lean();
 
   const images = await imageModel.find({ userId: params.id });
-  const bookings = await bookingModel.find({ doctorId: params.id });
 
-  console.log("book", bookings);
+
 
 
   return (
@@ -132,7 +131,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div id="tab-section">
-          <TabSection id={id} bookings={JSON.parse(JSON.stringify(bookings))} user={JSON.parse(JSON.stringify(user))} />
+          <TabSection id={id} user={JSON.parse(JSON.stringify(user))} />
         </div>
       </div>
     </div>
