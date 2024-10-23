@@ -4,7 +4,7 @@ import img1 from "@/public/img/doctor-02.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import userModel from "@/models/user";
-import { UpdateUser } from "../account/page";
+
 
 async function Doctors() {
   const doctors: UpdateUser[] = await userModel

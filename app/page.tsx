@@ -1,4 +1,4 @@
-import doctorModel from "@/models/doctor";
+
 import BestDoctors from "./components/templates/Home/BestDoctors";
 import Hero from "./components/templates/Home/Hero";
 import Specialities from "./components/templates/Home/Specialities";

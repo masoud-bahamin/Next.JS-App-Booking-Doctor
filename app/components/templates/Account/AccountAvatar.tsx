@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdateUser } from "@/app/account/page";
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";

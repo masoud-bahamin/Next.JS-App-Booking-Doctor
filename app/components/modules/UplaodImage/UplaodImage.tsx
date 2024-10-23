@@ -1,6 +1,6 @@
 'use client';
 
-import { UpdateUser } from '@/app/account/page';
+
 import { authContext } from '@/app/context/authContext';
 import type { PutBlobResult } from '@vercel/blob';
 import Image from 'next/image';
