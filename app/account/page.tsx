@@ -8,19 +8,6 @@ import { exportToken } from '@/utils/tokenGenerator';
 import userModel from '@/models/user';
 import { redirect } from 'next/navigation';
 import connectToDb from '@/utils/db';
-export interface UpdateUser {
-    username: string,
-    email: string,
-    password: string,
-    img: { filename: string }[],
-    role: string,
-    location: string,
-    age: number,
-    bio: string,
-    name: string,
-    phone: string,
-    _id: string
-}
 
 
 const HomePage = async () => {

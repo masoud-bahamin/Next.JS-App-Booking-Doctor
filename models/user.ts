@@ -46,8 +46,12 @@ const schema = mongoose.Schema({
     } ,
     phone : {
         type : String ,
-        default : "Phone Number"
+        default : "No Phone Number"
     } ,
+    rezerved : {
+        type : [],
+        default : []
+    }
 
 
 }, {

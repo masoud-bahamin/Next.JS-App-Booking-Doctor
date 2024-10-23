@@ -2,6 +2,7 @@ import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { exportToken } from "@/utils/tokenGenerator";
 import { NextRequest, NextResponse } from "next/server";
+import  headers  from "../../route";
 
 export async function GET(req: NextRequest , context : {params : {id : string}}) {
 
@@ -12,20 +13,12 @@ export async function GET(req: NextRequest , context : {params : {id : string}})
             if (user) {
                 return NextResponse.json({ resulte: true, message: "successfull", user }, {
                     status: 200,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    }
+                    headers
                 })
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found", }, {
                     status: 400,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    }
+                    headers
                 })
             }
 
@@ -33,11 +26,7 @@ export async function GET(req: NextRequest , context : {params : {id : string}})
     } catch (error) {
         return NextResponse.json({ resulte: false, message: "catch error", error }, {
             status: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            }
+            headers
         })
     }
 }

@@ -3,39 +3,20 @@
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { UpdateUser } from "../account/page";
 
-interface User {
-  username: string;
-  password: string;
-  email: string;
+const initialContext: contextType = {
+  userInfo: null,
+  loading: true,
+  register: (user: User & { role: "USER" | "DOCTOR" }) => { },
+  updateUser: (user: UpdateType) => { },
+  login: (user: LoginUser) => { },
+  logout: () => { },
+  bookAppointment: (data: AppointmentType) => { },
+  getUserInfo: () => { },
+  error: ""
 }
 
-interface LoginUser {
-  password: string;
-  email: string;
-}
-
-interface UpdateType {
-  name: string;
-  phone: string;
-  age: number;
-  bio: string;
-  location: string;
-}
-
-interface contextType {
-  userInfo: UpdateUser | null;
-  loading: boolean;
-  register: (user: User & { role: "USER" | "DOCTOR" }) => void;
-  updateUser: (user: UpdateType) => void;
-  login: (user: LoginUser) => void;
-  logout: () => void;
-  getUserInfo: () => void;
-  error: string;
-}
-
-export const authContext = createContext({} as contextType);
+export const authContext = createContext<contextType>(initialContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [userInfo, setUserInfo] = useState<null | UpdateUser>(null);
@@ -200,6 +181,28 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(false);
   };
 
+  const bookAppointment = async (data: AppointmentType) => {
+    setLoading(true)
+    try {
+      const res = await fetch("/api/rezervation/create", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      if (res.status === 201) {
+        Swal.fire({
+          icon: "success",
+          text: "Your booking was successfull"
+        })
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        text: "Your booking was Not successfull"
+      })
+    }
+  }
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -207,6 +210,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <authContext.Provider
       value={{
+        bookAppointment,
         updateUser,
         getUserInfo,
         userInfo,

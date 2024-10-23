@@ -1,19 +1,26 @@
 import Breadcrumb from "@/app/components/modules/Breadcrumb/Breadcrumb";
 import Rating from "@/app/components/modules/Comment/Rating";
 import TabSection from "@/app/components/templates/Doctor/TabSection";
+import { bookingModel } from "@/models/booking";
 import imageModel from "@/models/image";
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
-import Image from "next/image";
 
 export default async function page({ params }: { params: { id: string } }) {
+
+  const { id } = params
+
   connectToDb();
   const user = await userModel
-    .findOne({ _id: params.id })
+    .findOne({ _id: id })
     .populate("comments")
     .lean();
 
   const images = await imageModel.find({ userId: params.id });
+  const bookings = await bookingModel.find({ doctorId: params.id });
+
+  console.log("book", bookings);
+
 
   return (
     <div className="">
@@ -125,7 +132,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div id="tab-section">
-          <TabSection user={JSON.parse(JSON.stringify(user))} />
+          <TabSection id={id} bookings={JSON.parse(JSON.stringify(bookings))} user={JSON.parse(JSON.stringify(user))} />
         </div>
       </div>
     </div>

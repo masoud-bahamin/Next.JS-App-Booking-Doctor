@@ -4,6 +4,7 @@ import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path"
 import fs from "fs"
+import  headers  from "../../users/route";
 
 export async function POST(req: any) {
 
@@ -35,30 +36,18 @@ export async function POST(req: any) {
         if (image) {
             return NextResponse.json({ resulte: true, message: "image upload successfully" }, {
                 status: 200,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                }
+                headers
             })
         } else {
             return NextResponse.json({ resulte: false, message: "image not made" }, {
                 status: 400,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                }
+                headers
             })
         }
     } catch (error) {
         return NextResponse.json({ resulte: false, error, message: "catch error" }, {
             status: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            }
+            headers
         })
     }
 

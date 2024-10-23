@@ -4,6 +4,7 @@ import { hashPassword } from "@/utils/hashPassword";
 import { tokenGenarator } from "@/utils/tokenGenerator";
 import userValidator from "@/validations/serverValidatins/userValidation";
 import { NextResponse } from "next/server";
+import  headers  from "../route";
 const cookie = require("cookie");
 
 export async function POST(req: Request) {
@@ -20,11 +21,7 @@ export async function POST(req: Request) {
           { resulte: false, message: "username or email exist already" },
           {
             status: 422,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers
           }
         );
       }
@@ -58,11 +55,7 @@ export async function POST(req: Request) {
           { resulte: false, message: "error , user not found" },
           {
             status: 420,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers
           }
         );
       }
@@ -75,11 +68,7 @@ export async function POST(req: Request) {
         },
         {
           status: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          },
+          headers
         }
       );
     }
@@ -88,11 +77,7 @@ export async function POST(req: Request) {
       { resulte: false, message: "catch error", error },
       {
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
+        headers
       }
     );
   }

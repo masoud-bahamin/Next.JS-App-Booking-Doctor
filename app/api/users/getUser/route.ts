@@ -2,6 +2,7 @@ import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { exportToken } from "@/utils/tokenGenerator";
 import { NextRequest, NextResponse } from "next/server";
+import  headers  from "../route";
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,11 +14,7 @@ export async function GET(req: NextRequest) {
         { resulte: false, message: "token not found" },
         {
           status: 401,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          },
+          headers,
         }
       );
     }
@@ -35,11 +32,7 @@ export async function GET(req: NextRequest) {
           { resulte: true, message: "successfull", user },
           {
             status: 200,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers
           }
         );
       } else {
@@ -47,11 +40,7 @@ export async function GET(req: NextRequest) {
           { resulte: false, message: "user not found" },
           {
             status: 400,
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers
           }
         );
       }

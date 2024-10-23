@@ -5,6 +5,7 @@ import { tokenGenarator } from "@/utils/tokenGenerator";
 import loginValidator from "@/validations/serverValidatins/login";
 import { NextResponse } from "next/server";
 import cookie from "cookie"
+import  headers  from "../route";
 
 export async function POST(req: Request) {
     try {
@@ -36,41 +37,25 @@ export async function POST(req: Request) {
                 } else {
                     return NextResponse.json({ resulte: false, message: "informatin not valid" }, {
                         status: 400,
-                        headers: {
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                        }
+                        headers
                     })
                 }
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found" }, {
                     status: 420,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    }
+                    headers
                 })
             }
         } else {
             return NextResponse.json({ resulte: false, error: validation , message : "your information is not valid"}, {
                 status: 500,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                }
+                headers
             })
         }
     } catch (error) {
         return NextResponse.json({ resulte: false, error, massage: "catch error" }, {
             status: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            }
+            headers
         })
     }
 
