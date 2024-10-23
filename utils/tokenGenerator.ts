@@ -1,6 +1,6 @@
 import { sign, verify } from "jsonwebtoken";
 
-const KEY = process.env.JWT_KEY !;
+const KEY = process.env.JWT_KEY || "wowcheaopwerwersdfg";
 export const tokenGenarator = (data: string | {}) => {
   const token = sign(data, KEY, { expiresIn: "72h" });
   return token;

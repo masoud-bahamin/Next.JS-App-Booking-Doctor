@@ -1,7 +1,7 @@
 import { hash, compare} from "bcryptjs"
 
 export const hashPassword = async (pass: string) => {
-    const hashKey = process.env.HASH_KEY !;
+    const hashKey = process.env.HASH_KEY || 12;
     const hashPass = await hash(pass, hashKey)
     return hashPass
 }
