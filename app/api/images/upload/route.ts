@@ -4,7 +4,7 @@ import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path"
 import fs from "fs"
-import  headers  from "../../users/route";
+import { headers } from "@/utils/helps";
 
 export async function POST(req: any) {
 

@@ -3,11 +3,7 @@ import connectToDb from "@/utils/db";
 import { NextResponse } from "next/server";
 
 
- const headersJson = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-}
+
 export async function GET() {
 
     try {
@@ -24,4 +20,3 @@ export async function GET() {
     }
 }
 
-export default headersJson

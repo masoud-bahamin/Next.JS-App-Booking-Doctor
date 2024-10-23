@@ -4,7 +4,7 @@ import connectToDb from '@/utils/db';
 import { exportToken } from '@/utils/tokenGenerator';
 import { put } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
-import { headers } from '../users/route';
+import { headers } from "@/utils/helps";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
 

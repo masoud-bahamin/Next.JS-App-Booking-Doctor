@@ -4,7 +4,7 @@ import { hashPassword } from "@/utils/hashPassword";
 import { tokenGenarator } from "@/utils/tokenGenerator";
 import userValidator from "@/validations/serverValidatins/userValidation";
 import { NextResponse } from "next/server";
-import  headers  from "../route";
+import { headers } from "@/utils/helps";;
 const cookie = require("cookie");
 
 export async function POST(req: Request) {

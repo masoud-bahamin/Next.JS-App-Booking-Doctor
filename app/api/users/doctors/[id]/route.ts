@@ -2,7 +2,7 @@ import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { exportToken } from "@/utils/tokenGenerator";
 import { NextRequest, NextResponse } from "next/server";
-import  headers  from "../../route";
+import { headers } from "@/utils/helps";;
 
 export async function GET(req: NextRequest , context : {params : {id : string}}) {
 

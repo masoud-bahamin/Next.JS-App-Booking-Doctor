@@ -1,9 +1,10 @@
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
+import { headers } from "@/utils/helps";
 import updateUserValidator from "@/validations/serverValidatins/updateUserValidation";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
-import  headers  from "../../route";
+
 
 export async function PUT(req: Request, context: { params: { id: string } }) {
 

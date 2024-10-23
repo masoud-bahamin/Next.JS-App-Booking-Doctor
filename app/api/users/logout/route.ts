@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import cookie from "cookie"
-import  headers  from "../route";
+import { headers } from "@/utils/helps";;
 
 export async function POST(req: NextRequest) {
     try {

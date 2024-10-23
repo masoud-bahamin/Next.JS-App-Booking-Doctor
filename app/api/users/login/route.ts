@@ -5,7 +5,7 @@ import { tokenGenarator } from "@/utils/tokenGenerator";
 import loginValidator from "@/validations/serverValidatins/login";
 import { NextResponse } from "next/server";
 import cookie from "cookie"
-import  headers  from "../route";
+import { headers } from "@/utils/helps";;
 
 export async function POST(req: Request) {
     try {
