@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
         { resulte: false, message: "token not found" },
         {
           status: 401,
-          headers,
+          
         }
       );
     }
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
           { resulte: true, message: "successfull", user },
           {
             status: 200,
-            headers
+            
           }
         );
       } else {
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
           { resulte: false, message: "user not found" },
           {
             status: 400,
-            headers
+            
           }
         );
       }
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
         { resulte: false, message: "email not found" },
         {
           status: 420,
-          headers
+          
         }
       );
     }
@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
       { resulte: false, message: "catch error", error },
       {
         status: 500,
-        headers
+        
       }
     );
   }
