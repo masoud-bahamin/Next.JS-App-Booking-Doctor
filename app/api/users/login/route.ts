@@ -5,7 +5,7 @@ import { tokenGenarator } from "@/utils/tokenGenerator";
 import loginValidator from "@/validations/serverValidatins/login";
 import { NextResponse } from "next/server";
 import cookie from "cookie"
-import { headers } from "@/utils/helps";;
+
 
 export async function POST(req: Request) {
     try {
@@ -27,35 +27,30 @@ export async function POST(req: Request) {
                     })
                     return NextResponse.json({ resulte: true , message : "login successfully"}, {
                         status: 200,
-                        headers: {
-                            "Set-Cookie" : setCookie ,
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                        }
+                      
                     })
                 } else {
                     return NextResponse.json({ resulte: false, message: "informatin not valid" }, {
                         status: 400,
-                        headers
+                        
                     })
                 }
             } else {
                 return NextResponse.json({ resulte: false, message: "user not found" }, {
                     status: 420,
-                    headers
+                  
                 })
             }
         } else {
             return NextResponse.json({ resulte: false, error: validation , message : "your information is not valid"}, {
                 status: 500,
-                headers
+                
             })
         }
     } catch (error) {
         return NextResponse.json({ resulte: false, error, massage: "catch error" }, {
             status: 200,
-            headers
+           
         })
     }
 

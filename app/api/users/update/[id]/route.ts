@@ -1,6 +1,5 @@
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
-import { headers } from "@/utils/helps";
 import updateUserValidator from "@/validations/serverValidatins/updateUserValidation";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
@@ -16,7 +15,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
 
         if (!isValidObjectId(id)) return NextResponse.json({ resulte: false, message: "id not found" }, {
             status: 400,
-            headers : headers
+
         })
 
         if (validation === true) {
@@ -24,18 +23,18 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
             if (user) {
                 return NextResponse.json({ resulte: true, message: "user update successfully", user }, {
                     status: 200,
-                    headers
+
                 })
             } else {
                 return NextResponse.json({ resulte: false, message: "server error user not found", }, {
                     status: 420,
-                    headers
+
                 })
             }
         } else {
             return NextResponse.json({ resulte: false, message: "your information is not valid", error: validation }, {
                 status: 500,
-                headers
+
             })
         }
 
@@ -43,7 +42,7 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
     } catch (error) {
         return NextResponse.json({ resulte: false, message: "server  error", error }, {
             status: 530,
-            headers
+
         })
     }
 }

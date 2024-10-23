@@ -1,25 +1,20 @@
 import Breadcrumb from "@/app/components/modules/Breadcrumb/Breadcrumb";
 import Rating from "@/app/components/modules/Comment/Rating";
 import TabSection from "@/app/components/templates/Doctor/TabSection";
-import { bookingModel } from "@/models/booking";
-import imageModel from "@/models/image";
-import userModel from "@/models/user";
-import connectToDb from "@/utils/db";
+
+
+const getDoctorInfo = async(id:string) => {
+  const res = await fetch(`http://localhost:3000/api/users/doctors/${id}`)
+  return res.json()
+  
+} 
 
 export default async function page({ params }: { params: { id: string } }) {
 
   const { id } = params
 
-  connectToDb();
-  const user = await userModel
-    .findOne({ _id: id })
-    .populate("comments")
-    .lean();
-
-  const images = await imageModel.find({ userId: params.id });
-
-
-
+  const data = await getDoctorInfo(id)
+  const doctor = JSON.parse(JSON.stringify(data.user));
 
   return (
     <div className="">
@@ -32,12 +27,12 @@ export default async function page({ params }: { params: { id: string } }) {
                 width={200}
                 height={200}
                 alt=""
-                src={`${images[images.length - 1]?.filename}`}
+                src={`${doctor?.img[doctor.img.length - 1]?.filename}`}
                 className="rounded-md"
               />
             </div>
             <div>
-              <p className="font-medium mb-2">{user?.username}</p>
+              <p className="font-medium mb-2">{doctor.username}</p>
               <p className="text-prim text-xs mb-2">Dentist</p>
               <Rating rate={4} />
             </div>
@@ -131,7 +126,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div id="tab-section">
-          <TabSection id={id} user={JSON.parse(JSON.stringify(user))} />
+          <TabSection doctor={doctor} id={id}/>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import Rating from "./Rating";
 export default function Comment({
   comments,
   doctorId,
-}: CommentType & { doctorId: string }) {
+}:{comments:CommentType[] | undefined , doctorId: string }) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -62,9 +62,9 @@ export default function Comment({
       <h3 className="text-xl mb-6 font-medium">Comments and Reviews</h3>
       <div className="max-w-xl mx-auto">
         <div>
-          {comments?.map((comment) => (
+          {comments?.map((comment , index) => (
             <div
-              key={comment.message + comment.username}
+              key={comment.message + comment.username + index}
               className="flex gap-2 p-0 py-6 lg:p-8"
             >
               <div className=" flex-shrink-0">

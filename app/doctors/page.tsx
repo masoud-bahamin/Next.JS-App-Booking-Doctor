@@ -3,14 +3,15 @@ import Breadcrumb from "../components/modules/Breadcrumb/Breadcrumb";
 import img1 from "@/public/img/user.png";
 import Image from "next/image";
 import Link from "next/link";
-import userModel from "@/models/user";
+
+const getDoctors = async () => {
+  const res = await fetch(`http://localhost:3000/api/users/doctors`)
+  return res.json()
+}
 
 
 async function Doctors() {
-  const doctors: UpdateUser[] = await userModel
-    .find({ role: "DOCTOR" }, "-password")
-    .populate("img")
-    .lean();
+  const doctors: UserType[] = await getDoctors().then(data => data.users);
 
   return (
     <div className="font-Work_Sans">

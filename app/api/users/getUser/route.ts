@@ -2,7 +2,6 @@ import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { exportToken } from "@/utils/tokenGenerator";
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "@/utils/helps";;
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,7 +12,6 @@ export async function GET(req: NextRequest) {
         { resulte: false, message: "token not found" },
         {
           status: 401,
-          
         }
       );
     }
@@ -32,8 +30,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(
           { resulte: true, message: "successfull", user },
           {
-            status: 200,
-            
+            status: 200, 
           }
         );
       } else {
@@ -41,7 +38,6 @@ export async function GET(req: NextRequest) {
           { resulte: false, message: "user not found" },
           {
             status: 400,
-            
           }
         );
       }
@@ -49,8 +45,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json(
         { resulte: false, message: "email not found" },
         {
-          status: 420,
-          
+          status: 420,   
         }
       );
     }
@@ -58,8 +53,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       { resulte: false, message: "catch error", error },
       {
-        status: 500,
-        
+        status: 500,  
       }
     );
   }

@@ -13,7 +13,7 @@ export default function UploadHandler() {
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState<File | null>(null)
 
-    const { userInfo } = useContext(authContext) as {userInfo: UpdateUser }
+    const { userInfo } = useContext(authContext) as {userInfo: UserType }
 
 
     const UploadHandler = async () => {

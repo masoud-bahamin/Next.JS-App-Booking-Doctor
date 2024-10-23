@@ -17,7 +17,7 @@ interface UpdateType {
   location: string;
 }
 
-interface UpdateUser {
+interface UserType {
   username: string,
   email: string,
   password: string,
@@ -29,7 +29,8 @@ interface UpdateUser {
   name: string,
   phone: string,
   _id: string,
-  appointments? : AppointmentType []
+  appointments? : AppointmentType [];
+  comments?: CommentType[]
 }
 
 interface AppointmentType {
@@ -40,7 +41,7 @@ interface AppointmentType {
 
 
 interface contextType {
-  userInfo: UpdateUser | null;
+  userInfo: UserType | null;
   loading: boolean;
   register: (user: User & { role: "USER" | "DOCTOR" }) => void;
   updateUser: (user: UpdateType) => void;
@@ -64,11 +65,8 @@ interface Appointment {
 }
 
 interface CommentType {
-  comments: [
-    {
       message: string;
       username: string;
       rateNumber: number;
-    }
-  ];
+
 };
