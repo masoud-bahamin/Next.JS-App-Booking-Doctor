@@ -30,7 +30,8 @@ interface UserType {
   phone: string,
   _id: string,
   appointments? : AppointmentType [];
-  comments?: CommentType[]
+  comments?: CommentType[];
+  speciality? : string
 }
 
 interface AppointmentType {

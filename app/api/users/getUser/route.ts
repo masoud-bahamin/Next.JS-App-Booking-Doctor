@@ -1,11 +1,13 @@
 import userModel from "@/models/user";
 import connectToDb from "@/utils/db";
 import { exportToken } from "@/utils/tokenGenerator";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const cookie = req.cookies.get("token");
+    const Cookies = cookies()
+    const cookie = Cookies.get("doctor-booking-app");
     
     if (!cookie?.value) {
       return NextResponse.json(

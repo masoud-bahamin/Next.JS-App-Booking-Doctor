@@ -1,16 +1,12 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import cookie from "cookie"
+
 
 
 export async function POST(req: NextRequest) {
     try {
-        const setCookie = cookie.serialize("token" , "" , {
-            httpOnly : true ,
-            path : "/",
-            maxAge : 1,
-            secure : false ,
-            sameSite : "strict"
-        })
+        const Cookies = cookies()
+        const setCookie = Cookies.delete("doctor-booking-app")
 
         return NextResponse.json({ resulte: true, message: "logout successfully" }, {
             status: 200,
