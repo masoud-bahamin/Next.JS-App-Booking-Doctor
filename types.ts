@@ -29,7 +29,8 @@ interface UpdateUser {
   name: string,
   phone: string,
   _id: string,
-  appointments? : AppointmentType []
+  appointments? : AppointmentType [],
+  comments?:CommentType[]
 }
 
 interface AppointmentType {
@@ -64,11 +65,8 @@ interface Appointment {
 }
 
 interface CommentType {
-  comments: [
-    {
       message: string;
       username: string;
       rateNumber: number;
     }
-  ];
-};
+  

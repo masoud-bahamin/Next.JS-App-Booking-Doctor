@@ -9,7 +9,7 @@ import Rating from "./Rating";
 export default function Comment({
   comments,
   doctorId,
-}: CommentType & { doctorId: string }) {
+}: {comments :CommentType [] ,  doctorId: string }) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 

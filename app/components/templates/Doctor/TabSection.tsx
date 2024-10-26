@@ -40,7 +40,7 @@ export default function TabSection({ user, id  }: TabSectionProps) {
         ) : tab === "overview" ? (
           <Overview username={user?.username} />
         ) : (
-          <Comment comments={user?.comments} doctorId={user._id} />
+          <Comment comments={user?.comments || []} doctorId={user._id} />
         )}
       </div>
     </div>
