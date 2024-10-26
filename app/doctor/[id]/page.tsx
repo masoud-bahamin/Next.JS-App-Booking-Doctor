@@ -1,24 +1,12 @@
 import Breadcrumb from "@/app/components/modules/Breadcrumb/Breadcrumb";
 import Rating from "@/app/components/modules/Comment/Rating";
 import TabSection from "@/app/components/templates/Doctor/TabSection";
-
-
-const getDoctorInfo = async(id:string) => {
-  const res = await fetch(`http://localhost:3000/api/users/doctors/${id}`,{
-    next:{
-      revalidate:30
-    }
-  })
-  return res.json()
-  
-} 
+import userModel from "@/models/user";
 
 export default async function page({ params }: { params: { id: string } }) {
 
   const { id } = params
-
-  const data = await getDoctorInfo(id)
-  const doctor : UserType = JSON.parse(JSON.stringify(data.user));
+  const doctor = await userModel.findOne({ _id : id }, "-__v").populate("img").populate("comments").lean()
 
   return (
     <div className="">
@@ -130,7 +118,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div id="tab-section">
-          <TabSection doctor={doctor} id={id}/>
+          <TabSection doctor={JSON.parse(JSON.stringify(doctor)) } id={id}/>
         </div>
       </div>
     </div>
