@@ -1,22 +1,12 @@
 import React from "react";
 import Breadcrumb from "../components/modules/Breadcrumb/Breadcrumb";
-
-import Image from "next/image";
-import Link from "next/link";
 import DoctorCard from "../components/templates/Doctors/DoctorCard";
-
-const getDoctors = async () => {
-  const res = await fetch(`http://localhost:3000/api/users/doctors`,{
-    next : {
-      revalidate : 60
-    }
-  })
-  return res.json()
-}
-
+import connectToDb from "@/utils/db";
+import userModel from "@/models/user";
 
 async function Doctors() {
-  const doctors: UserType[] = await getDoctors().then(data => data.users);
+  connectToDb()
+  const doctors: UserType[] = await userModel.find({ role: "DOCTOR" }).populate("img").lean();
 
   return (
     <div className="font-Work_Sans">
