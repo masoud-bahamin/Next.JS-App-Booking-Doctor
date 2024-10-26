@@ -4,13 +4,15 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Rating from "./Rating";
+import RatingSelect from "./RatingSelect";
 
 
 export default function Comment({
   comments,
   doctorId,
-}: CommentType & { doctorId: string }) {
+}: { comments: CommentType[] | undefined, doctorId: string }) {
   const [message, setMessage] = useState("");
+  const [rate, setRate] = useState(5);
   const [loading, setLoading] = useState(false);
 
   const sendComment = async () => {
@@ -27,14 +29,13 @@ export default function Comment({
         method: "POST",
         body: JSON.stringify({
           message,
-          rateNumber: 4,
+          rateNumber: rate,
           userId: doctorId,
           username: "masoud",
         }),
       });
 
       const data = await res.json();
-      console.log(data);
       if (data.resulte) {
         Swal.fire({
           icon: "success",
@@ -62,9 +63,9 @@ export default function Comment({
       <h3 className="text-xl mb-6 font-medium">Comments and Reviews</h3>
       <div className="max-w-xl mx-auto">
         <div>
-          {comments?.map((comment) => (
+          {comments?.map((comment, index) => (
             <div
-              key={comment.message + comment.username}
+              key={comment.message + comment.username + index}
               className="flex gap-2 p-0 py-6 lg:p-8"
             >
               <div className=" flex-shrink-0">
@@ -84,6 +85,11 @@ export default function Comment({
               </div>
             </div>
           ))}
+
+          <div className="mt-6">
+            <h4>How was your meeting?</h4>
+            <RatingSelect rate={rate} setRate={setRate}/>
+          </div>
 
           <div className="p-0 py-6 lg:p-8">
             <textarea

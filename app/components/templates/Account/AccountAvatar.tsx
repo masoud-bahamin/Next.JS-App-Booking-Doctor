@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 interface AccountAvatarProps {
-  userInfo: UpdateUser;
+  userInfo: UserType;
 }
 
 export default function AccountAvatar({ userInfo }: AccountAvatarProps) {

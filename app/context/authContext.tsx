@@ -19,7 +19,7 @@ const initialContext: contextType = {
 export const authContext = createContext<contextType>(initialContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userInfo, setUserInfo] = useState<null | UpdateUser>(null);
+  const [userInfo, setUserInfo] = useState<null | UserType>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 

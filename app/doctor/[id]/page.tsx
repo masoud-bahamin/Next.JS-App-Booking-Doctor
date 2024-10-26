@@ -1,25 +1,24 @@
 import Breadcrumb from "@/app/components/modules/Breadcrumb/Breadcrumb";
 import Rating from "@/app/components/modules/Comment/Rating";
 import TabSection from "@/app/components/templates/Doctor/TabSection";
-import { bookingModel } from "@/models/booking";
-import imageModel from "@/models/image";
-import userModel from "@/models/user";
-import connectToDb from "@/utils/db";
+
+
+const getDoctorInfo = async(id:string) => {
+  const res = await fetch(`http://localhost:3000/api/users/doctors/${id}`,{
+    next:{
+      revalidate:30
+    }
+  })
+  return res.json()
+  
+} 
 
 export default async function page({ params }: { params: { id: string } }) {
 
   const { id } = params
 
-  connectToDb();
-  const user = await userModel
-    .findOne({ _id: id })
-    .populate("comments")
-    .lean();
-
-  const images = await imageModel.find({ userId: params.id });
-
-
-
+  const data = await getDoctorInfo(id)
+  const doctor : UserType = JSON.parse(JSON.stringify(data.user));
 
   return (
     <div className="">
@@ -32,13 +31,13 @@ export default async function page({ params }: { params: { id: string } }) {
                 width={200}
                 height={200}
                 alt=""
-                src={`${images[images.length - 1]?.filename}`}
+                src={`${doctor?.img[doctor.img.length - 1]?.filename}`}
                 className="rounded-md"
               />
             </div>
             <div>
-              <p className="font-medium mb-2">{user?.username}</p>
-              <p className="text-prim text-xs mb-2">Dentist</p>
+              <p className="font-medium mb-2">{doctor.username}</p>
+              <p className="text-prim text-xs mb-2">{doctor.speciality || "Dentist"}</p>
               <Rating rate={4} />
             </div>
           </div>
@@ -92,7 +91,7 @@ export default async function page({ params }: { params: { id: string } }) {
                   d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
                 />
               </svg>
-              <span className="text-xs">6 Feedback</span>
+              <span className="text-xs">{doctor?.comments?.length || 0} Feedback</span>
             </div>
             <div className="text-slate-800 mb-3 flex items-center gap-2 font-medium">
               <svg
@@ -114,7 +113,7 @@ export default async function page({ params }: { params: { id: string } }) {
                   d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                 />
               </svg>
-              <span className="text-xs">Astrailia</span>
+              <span className="text-xs">{doctor?.location || "Astrailia"} </span>
             </div>
             <a
               href="#tab-section"
@@ -131,7 +130,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div id="tab-section">
-          <TabSection id={id} user={JSON.parse(JSON.stringify(user))} />
+          <TabSection doctor={doctor} id={id}/>
         </div>
       </div>
     </div>
