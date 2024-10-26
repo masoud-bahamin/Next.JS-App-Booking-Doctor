@@ -32,7 +32,7 @@ interface UserType {
 
   appointments? : AppointmentType [],
   comments?:CommentType[]
-
+  speciality? :string
 }
 
 interface AppointmentType {
