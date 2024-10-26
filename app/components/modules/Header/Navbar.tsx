@@ -15,22 +15,22 @@ export default function Navbar({ setIsShow, isShow }: NavbarProps) {
         } transition-all duration-500 flex flex-col w-screen left-0  p-4 absolute bg-white z-30 lg:flex lg:flex-row lg:w-full lg:relative lg:p-0 gap-6 text-sm font-mediom`}
       >
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/"}>Home</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/"}>Home</Link>
         </li>
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/about"}>About</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/about"}>About</Link>
         </li>
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/specialities"}>Specialities</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/specialities"}>Specialities</Link>
         </li>
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/doctors"}>Doctors</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/doctors"}>Doctors</Link>
         </li>
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/blog"}>Blog</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/blog"}>Blog</Link>
         </li>
         <li className="hover:text-prim transition-all duration-500">
-          <Link href={"/contact"}>Contact Us</Link>
+          <Link onClick={()=> setIsShow(false)} href={"/contact"}>Contact Us</Link>
         </li>
       </ul>
       <button

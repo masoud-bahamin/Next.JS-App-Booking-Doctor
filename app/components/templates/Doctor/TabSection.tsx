@@ -5,9 +5,9 @@ import Overview from "./Overview";
 import Comment from "../../modules/Comment/Comment";
 import Appointment from "./Appointment";
 
-type TabSectionProps = { user: UpdateUser & CommentType, id: string  };
+type TabSectionProps = { id: string , doctor : UserType };
 
-export default function TabSection({ user, id  }: TabSectionProps) {
+export default function TabSection({  id , doctor }: TabSectionProps) {
   const [tab, setTab] = useState("appointment");
   return (
     <div>
@@ -38,9 +38,9 @@ export default function TabSection({ user, id  }: TabSectionProps) {
         {tab === "appointment" ? (
           <Appointment id={id}/>
         ) : tab === "overview" ? (
-          <Overview username={user?.username} />
+          <Overview username={doctor?.username !} />
         ) : (
-          <Comment comments={user?.comments || []} doctorId={user._id} />
+          <Comment comments={doctor?.comments} doctorId={id} />
         )}
       </div>
     </div>

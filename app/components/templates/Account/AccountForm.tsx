@@ -8,7 +8,7 @@ import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
 interface AccountFormProps {
-  userInfo: UpdateUser;
+  userInfo: UserType;
   token: string | null;
 }
 

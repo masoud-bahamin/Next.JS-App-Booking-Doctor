@@ -4,7 +4,7 @@ import connectToDb from '@/utils/db';
 import { exportToken } from '@/utils/tokenGenerator';
 import { put } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
-import { headers } from "@/utils/helps";
+
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
 
@@ -30,13 +30,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
             return NextResponse.json({ resulte: true, blob }, {
                 status: 201,
-                headers
+              
             })
 
         } catch (error) {
             return NextResponse.json({ resulte: false, error, message: "catch error" }, {
                 status: 500,
-                headers
+               
             })
         }
 
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     } else {
         return NextResponse.json({ resulte: false, message: "file not found" }, {
             status: 400,
-            headers
+           
         })
     }
 
